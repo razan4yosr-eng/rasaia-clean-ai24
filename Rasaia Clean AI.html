@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rasaia Clean AI — AI cleaning quotations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+/* ===========================================================
+   Rasaia Clean AI — Design System
+   Premium SaaS aesthetic · deep blue · clean white
+   =========================================================== */
+
+:root {
+  /* Brand blues */
+  --blue-50:  #EEF3FF;
+  --blue-100: #DDE6FF;
+  --blue-200: #BFD0FF;
+  --blue-300: #93AEFF;
+  --blue-400: #5E82F6;
+  --blue-500: #3A60EC;
+  --blue-600: #2347D9;   /* primary */
+  --blue-700: #1B37B4;
+  --blue-800: #18308F;
+  --blue-900: #142663;
+  --navy:     #0B1734;   /* deepest brand navy */
+
+  /* AI accent (violet-leaning) */
+  --ai-500: #6E59F2;
+  --ai-100: #ECE8FF;
+
+  /* Success / status */
+  --green-600: #0E9F6E;
+  --green-100: #DDF6EC;
+  --amber-600: #C2810A;
+  --amber-100: #FBF1D8;
+  --red-600:   #D64550;
+  --red-100:   #FBE3E5;
+
+  /* Neutrals (cool, subtly toned) */
+  --ink:    #0C1526;   /* primary text */
+  --ink-2:  #33415C;   /* secondary text */
+  --ink-3:  #67748C;   /* tertiary / captions */
+  --line:   #E4E9F2;   /* hairlines */
+  --line-2: #EEF1F7;
+  --surface:    #FFFFFF;
+  --surface-2:  #F7F9FC;  /* page bg */
+  --surface-3:  #F1F4FA;  /* inset */
+
+  /* Radii */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+
+  /* Shadows — soft, layered, premium */
+  --sh-xs: 0 1px 2px rgba(12,21,38,.06);
+  --sh-sm: 0 2px 6px rgba(12,21,38,.06), 0 1px 2px rgba(12,21,38,.05);
+  --sh-md: 0 6px 18px rgba(12,21,38,.08), 0 2px 6px rgba(12,21,38,.05);
+  --sh-lg: 0 18px 44px rgba(12,21,38,.12), 0 6px 14px rgba(12,21,38,.07);
+  --sh-xl: 0 34px 80px rgba(11,23,52,.20), 0 10px 24px rgba(12,21,38,.10);
+  --sh-blue: 0 12px 30px rgba(35,71,217,.30);
+
+  --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --maxw: 1200px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--surface-2);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root { min-height: 100vh; }
+
+h1, h2, h3, h4, h5, p { margin: 0; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--blue-200); }
+
+/* Scrollbar */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: #D3DAE8; border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
+*::-webkit-scrollbar-thumb:hover { background: #BCC6D9; background-clip: padding-box; border: 2px solid transparent; }
+
+/* ---------- Typographic helpers ---------- */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+}
+.mono { font-family: var(--mono); }
+.t-display { font-size: 60px; line-height: 1.04; font-weight: 800; letter-spacing: -.025em; }
+.t-h1 { font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -.02em; }
+.t-h2 { font-size: 28px; line-height: 1.18; font-weight: 700; letter-spacing: -.015em; }
+.t-h3 { font-size: 21px; line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
+.muted { color: var(--ink-3); }
+.lead { font-size: 18px; line-height: 1.6; color: var(--ink-2); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  font-weight: 600; font-size: 15px; line-height: 1;
+  padding: 0 20px; height: 46px; border-radius: var(--r-pill);
+  transition: transform .12s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  white-space: nowrap; user-select: none;
+}
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn-primary { background: var(--blue-600); color: #fff; box-shadow: var(--sh-blue); }
+.btn-primary:hover { background: var(--blue-700); box-shadow: 0 14px 34px rgba(35,71,217,.40); }
+.btn-dark { background: var(--navy); color: #fff; box-shadow: var(--sh-md); }
+.btn-dark:hover { background: #122046; }
+.btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: var(--sh-xs); }
+.btn-ghost:hover { border-color: #CFD8E8; background: var(--surface-2); }
+.btn-soft { background: var(--blue-50); color: var(--blue-700); }
+.btn-soft:hover { background: var(--blue-100); }
+.btn-lg { height: 54px; font-size: 16px; padding: 0 28px; }
+.btn-sm { height: 38px; font-size: 13.5px; padding: 0 15px; }
+.btn-block { width: 100%; }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 600; padding: 4px 11px; border-radius: var(--r-pill);
+  line-height: 1.3;
+}
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; }
+.badge-blue  { background: var(--blue-50);  color: var(--blue-700); }
+.badge-green { background: var(--green-100); color: var(--green-600); }
+.badge-amber { background: var(--amber-100); color: var(--amber-600); }
+.badge-red   { background: var(--red-100);   color: var(--red-600); }
+.badge-gray  { background: var(--surface-3); color: var(--ink-2); }
+.badge-ai    { background: var(--ai-100);    color: var(--ai-500); }
+
+/* ---------- Form fields ---------- */
+.field-label { font-size: 13.5px; font-weight: 600; color: var(--ink-2); margin-bottom: 8px; display: block; }
+.input, .select {
+  width: 100%; height: 50px; padding: 0 16px;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: var(--surface); color: var(--ink); font-size: 15px;
+  transition: border-color .15s, box-shadow .15s;
+  outline: none;
+}
+.input:focus, .select:focus { border-color: var(--blue-400); box-shadow: 0 0 0 4px var(--blue-50); }
+.input::placeholder { color: var(--ink-3); }
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+@keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+@keyframes barGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes popCheck { 0% { transform: scale(.6); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes ringPulse { 0% { box-shadow: 0 0 0 0 rgba(35,71,217,.35);} 70%{ box-shadow: 0 0 0 14px rgba(35,71,217,0);} 100%{ box-shadow:0 0 0 0 rgba(35,71,217,0);} }
+
+/* Entrance classes stay fully visible by default. Some preview/capture
+   environments pause CSS animations at frame 0 — gating visibility on an
+   opacity-from-0 animation would leave content invisible there. We keep a
+   gentle, safe transform-only lift that can never hide content. */
+.fade-up, .fade-in, .scale-in { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up { animation: liftIn .5s cubic-bezier(.2,.7,.3,1) both; }
+  .scale-in { animation: liftIn .42s cubic-bezier(.2,.7,.3,1) both; }
+}
+@keyframes liftIn { from { transform: translateY(10px); } to { transform: none; } }
+
+/* ---------- Utility ---------- */
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.gap-2 { gap: 8px; } .gap-3 { gap: 12px; } .gap-4 { gap: 16px; } .gap-5 { gap: 20px; } .gap-6 { gap: 24px; }
+.grow { flex: 1; }
+.wrap { flex-wrap: wrap; }
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+.skeleton-line {
+  background: linear-gradient(90deg, #EEF1F7 25%, #E4E9F2 37%, #EEF1F7 63%);
+  background-size: 800px 100%; animation: shimmer 1.4s infinite linear;
+  border-radius: 6px;
+}
+
+/* ---------- RTL (Arabic) ---------- */
+[dir="rtl"] body, [dir="rtl"] { text-align: right; }
+/* Mirror directional chevrons/arrows so "next/back" point the right way */
+[dir="rtl"] svg path[d^="M5 12h14"],
+[dir="rtl"] svg path[d^="M19 12H5"] { /* fallback; handled by class below */ }
+[dir="rtl"] .flip-rtl { transform: scaleX(-1); }
+/* Range slider direction */
+[dir="rtl"] input[type="range"] { direction: rtl; }
+/* Keep monospace refs / phone numbers / prices LTR for legibility */
+[dir="rtl"] .mono, [dir="rtl"] .keep-ltr { direction: ltr; unicode-bidi: embed; }
+[dir="rtl"] .mono { text-align: inherit; }
+
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script type="text/babel">
+// === i18n.jsx ===
+/* ============================================================
+   Rasaia Clean AI — Internationalization (EN / AR + RTL)
+   Keyed by English source string; AR falls back to EN if missing.
+   ============================================================ */
+const { createContext, useContext } = React;
+
+/* ---- Arabic dictionary (English source -> Arabic) ---- */
+const AR = {
+  // Nav / global
+  "How it works": "كيف يعمل",
+  "Benefits": "المزايا",
+  "Services": "الخدمات",
+  "Business portal": "بوابة الأعمال",
+  "Start estimate": "ابدأ التقدير",
+  "Start your estimate": "ابدأ التقدير",
+  "View business portal": "عرض بوابة الأعمال",
+  "Exit": "خروج",
+  "Back": "رجوع",
+  "Back to home": "العودة للرئيسية",
+  "Done": "تم",
+  "Cancel": "إلغاء",
+  "Continue to photos": "المتابعة إلى الصور",
+  "English": "English",
+  "Arabic": "العربية",
+
+  // Hero
+  "AI-powered cleaning quotations": "عروض أسعار تنظيف مدعومة بالذكاء الاصطناعي",
+  "AI estimate ready": "التقدير جاهز",
+  "Recommended service": "الخدمة الموصى بها",
+  "Deep Cleaning": "تنظيف عميق",
+  "ESTIMATED RANGE": "النطاق التقديري",
+  "Duration": "المدة",
+  "~4.5 hrs": "~4.5 ساعة",
+  "Team": "الفريق",
+  "2 cleaners": "عاملان",
+  "Get an instant cleaning estimate in": "احصل على تقدير تنظيف فوري في",
+  "under 2 minutes": "أقل من دقيقتين",
+  "Rasaia Clean AI turns property details and a handful of photos into a precise, consistent quotation — service, labor, duration and price — without a single WhatsApp message.":
+    "يحوّل رسايا كلين الذكاء الاصطناعي تفاصيل العقار وبعض الصور إلى عرض سعر دقيق وثابت — الخدمة والعمالة والمدة والسعر — دون أي رسالة واتساب.",
+  "quotes generated": "عرض سعر تم إنشاؤه",
+  "average time to quote": "متوسط زمن التسعير",
+  "estimate accuracy": "دقة التقدير",
+  "Built for cleaning companies that quote at scale": "مصمم لشركات التنظيف التي تسعّر على نطاق واسع",
+  "Residential": "سكني",
+  "Commercial": "تجاري",
+  "Move-out & handover": "إخلاء وتسليم",
+  "Post-renovation": "ما بعد التجديد",
+
+  // How it works
+  "From property to priced quote in three steps": "من العقار إلى عرض سعر مسعّر في ثلاث خطوات",
+  "Describe the property": "صف العقار",
+  "Type, size, bedrooms, bathrooms and the cleaning needed.": "النوع والحجم وغرف النوم والحمامات ونوع التنظيف المطلوب.",
+  "Upload a few photos": "ارفع بعض الصور",
+  "Living room, kitchen, bathrooms — anything that helps.": "غرفة المعيشة والمطبخ والحمامات — أي شيء يساعد.",
+  "Get an instant quote": "احصل على عرض سعر فوري",
+  "Service, duration, team size and a clear price range.": "الخدمة والمدة وحجم الفريق ونطاق سعر واضح.",
+
+  // Benefits
+  "Why Rasaia": "لماذا رسايا",
+  "Stop guessing. Start quoting with confidence.": "توقف عن التخمين. ابدأ التسعير بثقة.",
+  "Manual quotes are slow and inconsistent — two employees, two prices. Rasaia standardizes the entire process behind one AI engine.":
+    "العروض اليدوية بطيئة وغير متسقة — موظفان، سعران. توحّد رسايا العملية بأكملها خلف محرك ذكاء اصطناعي واحد.",
+  "Try it now": "جرّبه الآن",
+  "Instant, not hours later": "فوري، وليس بعد ساعات",
+  "Replace back-and-forth WhatsApp threads with a quote generated the moment a customer submits.":
+    "استبدل محادثات واتساب المتكررة بعرض سعر يُنشأ لحظة إرسال العميل لطلبه.",
+  "Consistent every time": "متسق في كل مرة",
+  "The same property always gets the same estimate — no more variance between employees.":
+    "العقار نفسه يحصل دائمًا على التقدير نفسه — لا تباين بين الموظفين.",
+  "Smarter with every photo": "أذكى مع كل صورة",
+  "AI reads property photos to refine complexity, labor and pricing — and shows its reasoning.":
+    "يقرأ الذكاء الاصطناعي صور العقار لتحسين التعقيد والعمالة والتسعير — ويوضح أسبابه.",
+  "Protect your margins": "احمِ هوامش ربحك",
+  "Transparent labor and team-size logic keeps every quote priced to win without underselling.":
+    "منطق شفاف للعمالة وحجم الفريق يبقي كل عرض مسعّرًا للفوز دون بيع بأقل من القيمة.",
+
+  // Services
+  "Services we price": "الخدمات التي نسعّرها",
+  "Every cleaning type, one engine": "كل أنواع التنظيف، محرك واحد",
+  "Get a quote": "احصل على عرض سعر",
+  "From": "ابتداءً من",
+  "Regular Cleaning": "تنظيف عادي",
+  "Move-Out Cleaning": "تنظيف الإخلاء",
+  "Post-Renovation Cleaning": "تنظيف ما بعد التجديد",
+  "Routine upkeep of living spaces and surfaces.": "صيانة روتينية للمساحات المعيشية والأسطح.",
+  "Detailed top-to-bottom clean incl. build-up and grime.": "تنظيف تفصيلي شامل يشمل التراكمات والأوساخ.",
+  "Handover-ready clean for tenancy and inspections.": "تنظيف جاهز للتسليم للإيجار والمعاينات.",
+  "Dust, debris and residue removal after construction.": "إزالة الغبار والركام والبقايا بعد البناء.",
+  "Standard": "قياسي",
+  "Elevated": "مرتفع",
+  "High": "عالٍ",
+  "Intensive": "مكثّف",
+
+  // CTA / footer
+  "Your next quote is 2 minutes away": "عرض سعرك التالي على بُعد دقيقتين",
+  "No sign-up required to try. Generate a full AI quotation and see exactly how Rasaia thinks.":
+    "لا حاجة للتسجيل للتجربة. أنشئ عرض سعر كامل بالذكاء الاصطناعي وشاهد كيف تفكّر رسايا.",
+  "Start your free estimate": "ابدأ تقديرك المجاني",
+  "© 2026 Rasaia Clean AI · Quotation intelligence for cleaning companies":
+    "© 2026 رسايا كلين الذكاء الاصطناعي · ذكاء التسعير لشركات التنظيف",
+
+  // Wizard steps
+  "Property": "العقار",
+  "Photos": "الصور",
+  "Analysis": "التحليل",
+  "Quote": "عرض السعر",
+
+  // Property info
+  "Step 1 of 4": "الخطوة 1 من 4",
+  "Step 2 of 4": "الخطوة 2 من 4",
+  "Tell us about the property": "أخبرنا عن العقار",
+  "The more accurate the details, the tighter your AI estimate.": "كلما دقّت التفاصيل، زاد دقة تقدير الذكاء الاصطناعي.",
+  "Property type": "نوع العقار",
+  "Apartment": "شقة",
+  "Villa": "فيلا",
+  "Townhouse": "تاون هاوس",
+  "Office": "مكتب",
+  "Property size": "مساحة العقار",
+  "sq ft": "قدم²",
+  "Bedrooms": "غرف النوم",
+  "Bathrooms": "الحمامات",
+  "Cleaning type": "نوع التنظيف",
+  "Maintenance clean for lived-in homes": "تنظيف صيانة للمنازل المأهولة",
+  "Thorough detail clean, every surface": "تنظيف تفصيلي شامل لكل سطح",
+  "Inspection-ready handover clean": "تنظيف تسليم جاهز للمعاينة",
+  "Dust & debris removal after works": "إزالة الغبار والركام بعد الأعمال",
+
+  // Photo upload
+  "Add photos for a sharper estimate": "أضف صورًا لتقدير أدق",
+  "Optional, but photos let the AI assess real soiling and complexity. Drag & drop or click to add.":
+    "اختياري، لكن الصور تتيح للذكاء الاصطناعي تقييم الاتساخ والتعقيد الفعلي. اسحب وأفلت أو انقر للإضافة.",
+  "Drag & drop photos here": "اسحب وأفلت الصور هنا",
+  "or click to browse · JPG, PNG, HEIC up to 20MB": "أو انقر للتصفح · JPG وPNG وHEIC حتى 20 ميجابايت",
+  "Living Room": "غرفة المعيشة",
+  "Kitchen": "المطبخ",
+  "Bathroom": "الحمام",
+  "Bedroom": "غرفة النوم",
+  "Additional": "إضافي",
+  "Sofas, floors, surfaces": "الأرائك والأرضيات والأسطح",
+  "Counters, appliances, sink": "أسطح العمل والأجهزة والحوض",
+  "Tiles, fixtures, grout": "البلاط والتجهيزات والفواصل",
+  "Floors, wardrobes, dust": "الأرضيات والخزائن والغبار",
+  "Balcony, hallway, other": "الشرفة والممر وغيرها",
+  "Add photo": "أضف صورة",
+  "photo": "صورة",
+  "photos": "صور",
+  "photo added": "صورة مضافة",
+  "photos added": "صورة مضافة",
+  "Analyze with AI": "حلّل بالذكاء الاصطناعي",
+  "Skip & analyze": "تخطٍّ وحلّل",
+
+  // AI analysis
+  "Generating your AI quotation": "إنشاء عرض السعر بالذكاء الاصطناعي",
+  "Analyzing your property — this takes a few seconds.": "جارٍ تحليل عقارك — يستغرق ذلك بضع ثوانٍ.",
+  "Reviewing property information": "مراجعة معلومات العقار",
+  "Type, size, rooms & cleaning scope": "النوع والحجم والغرف ونطاق التنظيف",
+  "Assessing cleaning complexity": "تقييم تعقيد التنظيف",
+  "Reading photo signals & soiling levels": "قراءة إشارات الصور ومستويات الاتساخ",
+  "Estimating labor requirements": "تقدير متطلبات العمالة",
+  "Hours, team size & scheduling": "الساعات وحجم الفريق والجدولة",
+  "Calculating quotation": "حساب عرض السعر",
+  "Rate model & property multipliers": "نموذج التسعير ومضاعفات العقار",
+  "Generating recommendations": "إنشاء التوصيات",
+  "Service match & confidence scoring": "مطابقة الخدمة وتقييم الثقة",
+  "working…": "جارٍ العمل…",
+
+  // Quote results
+  "Quote generated": "تم إنشاء عرض السعر",
+  "Your AI cleaning quotation": "عرض سعر التنظيف بالذكاء الاصطناعي",
+  "Reference": "المرجع",
+  "generated just now": "أُنشئ للتو",
+  "Ask the AI assistant": "اسأل مساعد الذكاء الاصطناعي",
+  "ESTIMATED PRICE RANGE": "نطاق السعر التقديري",
+  "Estimated duration": "المدة التقديرية",
+  "Recommended team": "الفريق الموصى به",
+  "Complexity": "التعقيد",
+  "hrs": "ساعة",
+  "cleaner": "عامل",
+  "cleaners": "عمّال",
+  "AI reasoning": "تحليل الذكاء الاصطناعي",
+  "How Rasaia built this estimate": "كيف بنت رسايا هذا التقدير",
+  "Take action": "اتخذ إجراء",
+  "Request a callback": "اطلب معاودة الاتصال",
+  "Speak to an advisor": "تحدث إلى مستشار",
+  "Download PDF quote": "تنزيل عرض السعر PDF",
+  "Download Quote": "تنزيل عرض السعر",
+  "Estimate valid for 14 days · no commitment": "التقدير صالح لمدة 14 يومًا · دون التزام",
+  "Property summary": "ملخص العقار",
+  "Size": "الحجم",
+  "Questions about your quote?": "أسئلة حول عرض سعرك؟",
+  "Chat with the AI assistant →": "تحدث مع مساعد الذكاء الاصطناعي ←",
+  "Edit details": "تعديل التفاصيل",
+
+  // Assistant
+  "Quote Assistant": "مساعد عروض الأسعار",
+  "AI · always available": "ذكاء اصطناعي · متاح دائمًا",
+  "Ask about your quote…": "اسأل عن عرض سعرك…",
+  "Why was this service recommended?": "لماذا تمت التوصية بهذه الخدمة؟",
+  "Why do I need": "لماذا أحتاج",
+  "cleaners?": "عمّال؟",
+  "How was the estimate calculated?": "كيف تم حساب التقدير؟",
+  "Can I reduce the estimate?": "هل يمكنني تقليل التقدير؟",
+
+  // Booking
+  "Book this cleaning": "احجز هذا التنظيف",
+  "Lock in your estimate — our team confirms the details and schedules your visit.":
+    "ثبّت تقديرك — يؤكد فريقنا التفاصيل ويجدول زيارتك.",
+  "Full Name": "الاسم الكامل",
+  "Phone Number": "رقم الهاتف",
+  "Email": "البريد الإلكتروني",
+  "Preferred Date": "التاريخ المفضل",
+  "Notes": "ملاحظات",
+  "e.g. Layla Haddad": "مثال: ليلى حداد",
+  "e.g. +971 50 123 4567": "مثال: 4567 123 50 971+",
+  "you@email.com": "you@email.com",
+  "Access instructions, parking, special requests…": "تعليمات الدخول، وقوف السيارات، طلبات خاصة…",
+  "Request Booking": "اطلب الحجز",
+  "By requesting, you agree to be contacted about this quote. No payment is taken now.":
+    "بإرسال الطلب، فإنك توافق على التواصل معك بشأن هذا العرض. لا يتم أخذ أي دفعة الآن.",
+  "Booking requested": "تم طلب الحجز",
+  "Thanks — we've received your booking request and will confirm shortly.":
+    "شكرًا — استلمنا طلب الحجز وسنؤكده قريبًا.",
+  "This field is required": "هذا الحقل مطلوب",
+  "Enter a valid email": "أدخل بريدًا إلكترونيًا صحيحًا",
+
+  // Contact
+  "Need help? Talk to us": "تحتاج مساعدة؟ تواصل معنا",
+  "Our advisors are available 7 days a week to help with quotes and bookings.":
+    "مستشارونا متاحون 7 أيام في الأسبوع للمساعدة في العروض والحجوزات.",
+  "Call us": "اتصل بنا",
+  "Email us": "راسلنا",
+  "Chat on WhatsApp": "الدردشة على واتساب",
+  "Sun–Sat · 8am to 9pm": "الأحد–السبت · 8 صباحًا حتى 9 مساءً",
+  "Replies within 1 business hour": "ردود خلال ساعة عمل واحدة",
+  "Fastest response": "أسرع استجابة",
+
+  // Confirmation
+  "Request successfully submitted": "تم إرسال الطلب بنجاح",
+  "An advisor will reach out shortly to walk you through your quote.":
+    "سيتواصل معك مستشار قريبًا لشرح عرض سعرك.",
+  "Our team has received your quote and will call you back to confirm details.":
+    "استلم فريقنا عرض سعرك وسيعاود الاتصال بك لتأكيد التفاصيل.",
+  "REFERENCE NUMBER": "رقم المرجع",
+  "EXPECTED CALLBACK": "وقت المعاودة المتوقع",
+  "Within 30 min": "خلال 30 دقيقة",
+  "View the business portal": "عرض بوابة الأعمال",
+
+  // Company portal
+  "WORKSPACE": "مساحة العمل",
+  "Dashboard": "لوحة التحكم",
+  "Customer Requests": "طلبات العملاء",
+  "Quote Management": "إدارة العروض",
+  "AI Insights": "رؤى الذكاء الاصطناعي",
+  "Operations lead": "مسؤول العمليات",
+  "Customer site": "موقع العملاء",
+  "Search requests…": "ابحث في الطلبات…",
+  "Quotation activity across your business": "نشاط التسعير عبر أعمالك",
+  "All requests": "كل الطلبات",
+  "Total quotes generated": "إجمالي العروض المُنشأة",
+  "Pending requests": "الطلبات المعلّقة",
+  "Confirmed requests": "الطلبات المؤكدة",
+  "Average quote value": "متوسط قيمة العرض",
+  "Most requested": "الأكثر طلبًا",
+  "new": "جديد",
+  "Quotes generated": "العروض المُنشأة",
+  "Last 12 months": "آخر 12 شهرًا",
+  "Service mix": "توزيع الخدمات",
+  "Recent requests": "الطلبات الأخيرة",
+  "View all": "عرض الكل",
+  "Customer": "العميل",
+  "Est. price": "السعر التقديري",
+  "Confidence": "الثقة",
+  "Status": "الحالة",
+  "total quotes": "إجمالي العروض",
+  "awaiting action": "بانتظار الإجراء",
+  "All": "الكل",
+  "Pending": "معلّق",
+  "Confirmed": "مؤكد",
+  "In review": "قيد المراجعة",
+  "Rejected": "مرفوض",
+  "Search name or reference…": "ابحث بالاسم أو المرجع…",
+  "No requests match your filters": "لا توجد طلبات تطابق عوامل التصفية",
+  "Review, edit and decide on AI-generated quotes": "راجع وعدّل وقرّر بشأن العروض المُنشأة بالذكاء الاصطناعي",
+  "Decision": "القرار",
+  "Approve quote": "اعتماد العرض",
+  "Edit quote": "تعديل العرض",
+  "Reject quote": "رفض العرض",
+  "Save changes": "حفظ التغييرات",
+  "Quote approved & confirmed": "تم اعتماد العرض وتأكيده",
+  "Quote rejected": "تم رفض العرض",
+  "Quote updated": "تم تحديث العرض",
+  "Approving notifies the customer and books the job. Rejecting sends a polite decline.":
+    "الاعتماد يُخطر العميل ويحجز المهمة. الرفض يرسل اعتذارًا مهذبًا.",
+  "Editing overrides the AI estimate. Changes are logged.": "التعديل يتجاوز تقدير الذكاء الاصطناعي. تُسجّل التغييرات.",
+  "QUOTE PRICE": "سعر العرض",
+  "DURATION": "المدة",
+  "TEAM SIZE": "حجم الفريق",
+  "Property details": "تفاصيل العقار",
+  "Location": "الموقع",
+  "Type": "النوع",
+  "Submitted": "أُرسل",
+  "What the quotation engine is learning about your business": "ما يتعلّمه محرك التسعير عن أعمالك",
+  "Most requested service": "الخدمة الأكثر طلبًا",
+  "Average property size": "متوسط مساحة العقار",
+  "sq ft across all quotes": "قدم² عبر كل العروض",
+  "Deep Cleaning demand": "الطلب على التنظيف العميق",
+  "Service demand breakdown": "تفصيل الطلب على الخدمات",
+  "Quote volume trend": "اتجاه حجم العروض",
+  "Monthly": "شهري",
+  "AI-generated business insights": "رؤى الأعمال المُنشأة بالذكاء الاصطناعي",
+  "Updated automatically from quotation data": "تُحدّث تلقائيًا من بيانات التسعير",
+  "AI insight": "رؤية ذكاء اصطناعي",
+  "Deep Cleaning demand is climbing": "الطلب على التنظيف العميق في ارتفاع",
+  "Deep Cleaning requests rose 18% over the last 30 days and now drive 41% of all quotes — the strongest contributor to average quote value.":
+    "ارتفعت طلبات التنظيف العميق بنسبة 18% خلال آخر 30 يومًا وتشكّل الآن 41% من كل العروض — أكبر مساهم في متوسط قيمة العرض.",
+  "High-confidence quotes convert better": "العروض عالية الثقة تتحوّل بشكل أفضل",
+  "Quotes generated at 90%+ confidence convert to confirmed bookings 2.3× more often. Encouraging photo uploads is the biggest confidence lever.":
+    "العروض المُنشأة بثقة 90%+ تتحول إلى حجوزات مؤكدة بمعدل 2.3 ضعفًا. تشجيع رفع الصور هو أكبر عامل لرفع الثقة.",
+  "Villas are under-quoted on labor": "الفلل مسعّرة بأقل من اللازم على العمالة",
+  "Villa jobs run 12% longer than estimated on average. Consider raising the villa labor multiplier from 1.15 to 1.22 to protect margin.":
+    "مهام الفلل تستغرق 12% أطول من المقدّر في المتوسط. فكّر في رفع مضاعف عمالة الفيلا من 1.15 إلى 1.22 لحماية الهامش.",
+  "Updated automatically": "يُحدّث تلقائيًا",
+
+  // AI reasoning titles
+  "Property profile": "ملف العقار",
+  "Complexity class": "فئة التعقيد",
+  "Labor & duration": "العمالة والمدة",
+  "Photo signals": "إشارات الصور",
+};
+
+const DICTS = { en: {}, ar: AR };
+
+const LangCtx = createContext({ lang: "en", setLang: () => {}, t: (s) => s, dir: "ltr", isRTL: false });
+
+function LangProvider({ children }) {
+  const [lang, setLangState] = useState(() => {
+    try { return localStorage.getItem("rasaia_lang") || "en"; } catch (e) { return "en"; }
+  });
+  const isRTL = lang === "ar";
+  const dir = isRTL ? "rtl" : "ltr";
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = dir;
+    try { localStorage.setItem("rasaia_lang", lang); } catch (e) {}
+  }, [lang, dir]);
+
+  const setLang = (l) => setLangState(l);
+  const t = (s) => {
+    if (lang === "en") return s;
+    const d = DICTS[lang] || {};
+    return Object.prototype.hasOwnProperty.call(d, s) ? d[s] : s;
+  };
+
+  return <LangCtx.Provider value={{ lang, setLang, t, dir, isRTL }}>{children}</LangCtx.Provider>;
+}
+
+function useLang() { return useContext(LangCtx); }
+
+/* ---- Language toggle (segmented EN | ع) ---- */
+function LanguageToggle({ compact }) {
+  const { lang, setLang } = useLang();
+  const opts = [{ k: "en", label: "EN" }, { k: "ar", label: "ع" }];
+  return (
+    <div className="row" style={{ background: "var(--surface-2)", border: "1px solid var(--line)", borderRadius: 999, padding: 3, gap: 2, height: compact ? 38 : 42 }}>
+      {opts.map(o => {
+        const active = lang === o.k;
+        return (
+          <button key={o.k} onClick={() => setLang(o.k)} aria-label={o.k === "en" ? "English" : "Arabic"} style={{
+            height: "100%", padding: "0 13px", borderRadius: 999, fontSize: 13.5, fontWeight: 700,
+            fontFamily: o.k === "ar" ? "var(--font)" : "inherit",
+            background: active ? "var(--blue-600)" : "transparent", color: active ? "#fff" : "var(--ink-2)",
+            transition: "background .15s, color .15s",
+          }}>{o.label}</button>
+        );
+      })}
+    </div>
+  );
+}
+
+Object.assign(window, { LangProvider, useLang, LanguageToggle });
+
+
+// === data.jsx ===
+/* ============================================================
+   Rasaia Clean AI — Sample data + AI estimation engine
+   Exposes: window.Rasaia = { CURRENCY, fmt, estimate, ... }
+   ============================================================ */
+
+const CURRENCY = "AED";
+const fmt = (n) => CURRENCY + " " + Math.round(n).toLocaleString("en-US");
+
+/* ---------- Service catalog ---------- */
+const SERVICES = {
+  regular:   { key: "regular",   name: "Regular Cleaning",        blurb: "Routine upkeep of living spaces and surfaces.",            rate: 0.85, hours: 1.0, complexity: "Standard" },
+  deep:      { key: "deep",      name: "Deep Cleaning",           blurb: "Detailed top-to-bottom clean incl. build-up and grime.",  rate: 1.55, hours: 1.7, complexity: "Elevated" },
+  moveout:   { key: "moveout",   name: "Move-Out Cleaning",       blurb: "Handover-ready clean for tenancy and inspections.",       rate: 1.85, hours: 2.0, complexity: "High"     },
+  postreno:  { key: "postreno",  name: "Post-Renovation Cleaning",blurb: "Dust, debris and residue removal after construction.",    rate: 2.35, hours: 2.5, complexity: "Intensive"},
+};
+
+const PROPERTY_TYPES = [
+  { key: "apartment", label: "Apartment",  icon: "building" },
+  { key: "villa",     label: "Villa",      icon: "home" },
+  { key: "townhouse", label: "Townhouse",  icon: "townhouse" },
+  { key: "office",    label: "Office",     icon: "briefcase" },
+];
+
+const CLEANING_TYPES = [
+  { key: "regular",  label: "Regular Cleaning",         desc: "Maintenance clean for lived-in homes" },
+  { key: "deep",     label: "Deep Cleaning",            desc: "Thorough detail clean, every surface" },
+  { key: "moveout",  label: "Move-Out Cleaning",        desc: "Inspection-ready handover clean" },
+  { key: "postreno", label: "Post-Renovation Cleaning", desc: "Dust & debris removal after works" },
+];
+
+const PHOTO_ROOMS = [
+  { key: "living",   label: "Living Room", hint: "Sofas, floors, surfaces" },
+  { key: "kitchen",  label: "Kitchen",     hint: "Counters, appliances, sink" },
+  { key: "bathroom", label: "Bathroom",    hint: "Tiles, fixtures, grout" },
+  { key: "bedroom",  label: "Bedroom",     hint: "Floors, wardrobes, dust" },
+  { key: "extra",    label: "Additional",  hint: "Balcony, hallway, other" },
+];
+
+/* ---------- The estimation engine ---------- */
+function estimate(input) {
+  const { propertyType = "apartment", size = 1100, bedrooms = 2, bathrooms = 2, cleaningType = "deep", photoCount = 0 } = input || {};
+  const svc = SERVICES[cleaningType] || SERVICES.deep;
+
+  // size-driven base, with room loading
+  const roomLoad = bedrooms * 55 + bathrooms * 90;
+  const effSize = Math.max(size, 350) + roomLoad;
+
+  // labor hours
+  let hours = (effSize / 240) * svc.hours;
+  if (propertyType === "villa") hours *= 1.18;
+  if (propertyType === "office") hours *= 0.92;
+  hours = Math.max(2, hours);
+
+  // team size
+  let team = 1;
+  if (hours > 4) team = 2;
+  if (hours > 8) team = 3;
+  if (hours > 13) team = 4;
+  const perPerson = hours / team;
+  const durationHours = Math.max(1.5, perPerson);
+
+  // price
+  const labor = effSize * svc.rate;
+  const typeMult = propertyType === "villa" ? 1.15 : propertyType === "office" ? 1.05 : 1;
+  const mid = labor * typeMult * 1.0;
+  const low = mid * 0.9;
+  const high = mid * 1.14;
+
+  // confidence — more photos & moderate size = higher confidence
+  let confidence = 78;
+  confidence += Math.min(photoCount, 8) * 1.6;
+  if (bedrooms <= 4 && bathrooms <= 4) confidence += 4;
+  if (cleaningType === "regular") confidence += 3;
+  confidence = Math.min(97, Math.round(confidence));
+
+  const reasoning = [
+    { t: "Property profile", d: `${PROPERTY_TYPES.find(p=>p.key===propertyType)?.label || "Property"} · ${size.toLocaleString()} sq ft · ${bedrooms} bed / ${bathrooms} bath. Adjusted workload of ${Math.round(effSize).toLocaleString()} effective sq ft after room weighting.` },
+    { t: "Complexity class", d: `Classified as ${svc.complexity.toLowerCase()} complexity for ${svc.name.toLowerCase()}. ${cleaningType === "postreno" ? "Construction residue requires specialist dust extraction." : cleaningType === "moveout" ? "Inspection-grade finish across all fixtures." : cleaningType === "deep" ? "Detailing of grout, appliances and high-touch zones included." : "Standard surface maintenance across living areas."}` },
+    { t: "Labor & duration", d: `Estimated ${hours.toFixed(1)} total labor hours, completed in ~${durationHours.toFixed(1)}h with a team of ${team}.` },
+    { t: "Photo signals", d: photoCount > 0 ? `Analyzed ${photoCount} uploaded photo${photoCount>1?"s":""}; detected typical soiling consistent with the selected service.` : "No photos provided — estimate based on property data alone. Adding photos raises confidence." },
+  ];
+
+  return {
+    service: svc,
+    cleaningType,
+    durationHours: Math.round(durationHours * 2) / 2,
+    totalHours: Math.round(hours * 2) / 2,
+    team,
+    priceLow: low, priceHigh: high, priceMid: mid,
+    confidence,
+    complexity: svc.complexity,
+    reasoning,
+    input: { propertyType, size, bedrooms, bathrooms, cleaningType },
+  };
+}
+
+/* ---------- AI assistant canned answers ---------- */
+function assistantAnswer(q, est) {
+  const key = q.toLowerCase();
+  if (key.includes("service") || key.includes("recommend"))
+    return `I recommended **${est.service.name}** because your inputs point to ${est.complexity.toLowerCase()} complexity. ${est.service.blurb} Based on the property size and room count, a lighter service would likely leave detailing gaps, while a heavier one would over-scope and raise the price unnecessarily.`;
+  if (key.includes("cleaner") || key.includes("team") || key.includes("2 ") || key.includes("staff"))
+    return `Your job is estimated at **${est.totalHours} total labor hours**. To finish within a single ~${est.durationHours}h window, I've assigned a team of **${est.team}**. Fewer cleaners would stretch the job across a longer day; more would idle. This balances speed and cost.`;
+  if (key.includes("calculate") || key.includes("estimate calc") || key.includes("how was"))
+    return `The estimate combines three signals: (1) effective area after weighting your ${est.input.bedrooms} bedrooms and ${est.input.bathrooms} bathrooms, (2) a per-sq-ft rate for ${est.service.name.toLowerCase()}, and (3) a property-type multiplier. That yields a midpoint of ${fmt(est.priceMid)}, presented as a ${fmt(est.priceLow)}–${fmt(est.priceHigh)} range to absorb on-site variation.`;
+  if (key.includes("reduce") || key.includes("cheaper") || key.includes("lower"))
+    return `A few ways to bring the estimate down: switch from ${est.service.name} to a lighter service tier, exclude rooms that don't need attention, or book a recurring plan for a loyalty rate. Want me to re-price a Regular Cleaning for comparison?`;
+  return `Good question. This estimate is generated from your property details and photo signals. The recommended ${est.service.name.toLowerCase()} runs ~${est.durationHours}h with a team of ${est.team}, priced ${fmt(est.priceLow)}–${fmt(est.priceHigh)} at ${est.confidence}% confidence. Ask me about the service choice, team size, pricing, or how to reduce it.`;
+}
+
+/* ---------- Company-side sample data ---------- */
+const REQUESTS = [
+  { id: "RQ-4821", name: "Layla Haddad",   prop: "Apartment", area: "Marina Heights, Dubai",   svc: "Deep Cleaning",            price: 1180, conf: 92, status: "pending",   when: "12 min ago", beds: 2, baths: 2, size: 1150 },
+  { id: "RQ-4820", name: "Omar Farouk",    prop: "Villa",     area: "Al Barsha, Dubai",        svc: "Move-Out Cleaning",        price: 2640, conf: 88, status: "pending",   when: "38 min ago", beds: 4, baths: 4, size: 3200 },
+  { id: "RQ-4819", name: "Sara Mansoor",   prop: "Townhouse", area: "Jumeirah, Dubai",         svc: "Regular Cleaning",         price: 620,  conf: 95, status: "confirmed", when: "1 hr ago",  beds: 3, baths: 2, size: 1800 },
+  { id: "RQ-4818", name: "Daniel Reyes",   prop: "Office",    area: "Business Bay, Dubai",     svc: "Deep Cleaning",            price: 1950, conf: 84, status: "review",    when: "2 hr ago",  beds: 0, baths: 3, size: 2600 },
+  { id: "RQ-4817", name: "Aisha Karimi",   prop: "Apartment", area: "Downtown, Dubai",         svc: "Post-Renovation Cleaning", price: 2210, conf: 79, status: "pending",   when: "3 hr ago",  beds: 2, baths: 2, size: 1340 },
+  { id: "RQ-4816", name: "Marcus Bauer",   prop: "Villa",     area: "Arabian Ranches, Dubai",  svc: "Deep Cleaning",            price: 2480, conf: 90, status: "confirmed", when: "5 hr ago",  beds: 5, baths: 5, size: 4100 },
+  { id: "RQ-4815", name: "Priya Nair",     prop: "Apartment", area: "JLT, Dubai",              svc: "Regular Cleaning",         price: 540,  conf: 96, status: "confirmed", when: "6 hr ago",  beds: 1, baths: 1, size: 780  },
+  { id: "RQ-4814", name: "Hassan Ali",     prop: "Townhouse", area: "Mirdif, Dubai",           svc: "Move-Out Cleaning",        price: 1760, conf: 86, status: "rejected",  when: "Yesterday", beds: 3, baths: 3, size: 2200 },
+];
+
+const STATUS_META = {
+  pending:   { label: "Pending",   cls: "badge-amber" },
+  confirmed: { label: "Confirmed", cls: "badge-green" },
+  review:    { label: "In review", cls: "badge-blue" },
+  rejected:  { label: "Rejected",  cls: "badge-red" },
+};
+
+const KPIS = {
+  totalQuotes: 1284,
+  pending: 47,
+  confirmed: 612,
+  avgValue: 1490,
+  topService: "Deep Cleaning",
+};
+
+const SERVICE_MIX = [
+  { name: "Deep Cleaning",            pct: 41, color: "var(--blue-600)" },
+  { name: "Regular Cleaning",         pct: 28, color: "var(--blue-400)" },
+  { name: "Move-Out Cleaning",        pct: 19, color: "var(--ai-500)" },
+  { name: "Post-Renovation Cleaning", pct: 12, color: "#9DB0E8" },
+];
+
+const TREND = [38, 44, 41, 52, 49, 61, 58, 67, 72, 69, 81, 88];
+
+const INSIGHTS = [
+  { tone: "blue",  title: "Deep Cleaning demand is climbing", body: "Deep Cleaning requests rose 18% over the last 30 days and now drive 41% of all quotes — the strongest contributor to average quote value." },
+  { tone: "green", title: "High-confidence quotes convert better", body: "Quotes generated at 90%+ confidence convert to confirmed bookings 2.3× more often. Encouraging photo uploads is the biggest confidence lever." },
+  { tone: "amber", title: "Villas are under-quoted on labor", body: "Villa jobs run 12% longer than estimated on average. Consider raising the villa labor multiplier from 1.15 to 1.22 to protect margin." },
+];
+
+window.Rasaia = {
+  CURRENCY, fmt, estimate, assistantAnswer,
+  SERVICES, PROPERTY_TYPES, CLEANING_TYPES, PHOTO_ROOMS,
+  REQUESTS, STATUS_META, KPIS, SERVICE_MIX, TREND, INSIGHTS,
+};
+
+
+// === components.jsx ===
+/* ============================================================
+   Rasaia Clean AI — Shared UI components
+   ============================================================ */
+const { useState, useEffect, useRef } = React;
+
+/* ---------------- Icons (stroke, 24 grid) ---------------- */
+const PATHS = {
+  sparkle: "M12 3l1.8 4.6L18.4 9.4 13.8 11.2 12 15.8 10.2 11.2 5.6 9.4 10.2 7.6z M19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z",
+  arrowRight: "M5 12h14 M13 6l6 6-6 6",
+  arrowLeft: "M19 12H5 M11 18l-6-6 6-6",
+  check: "M5 13l4 4L19 7",
+  building: "M5 21V5a2 2 0 012-2h7a2 2 0 012 2v16 M9 7h2 M9 11h2 M9 15h2 M16 21h3a0 0 0 000 0V11a2 2 0 00-2-2h-1",
+  home: "M4 11l8-7 8 7 M6 10v9a1 1 0 001 1h10a1 1 0 001-1v-9 M10 20v-5h4v5",
+  townhouse: "M3 21V9l5-3 M8 21V6l6-3 7 4v14 M11 11h2 M11 15h2 M17 11h0 M17 15h0",
+  briefcase: "M3 9a2 2 0 012-2h14a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2 M3 13h18",
+  upload: "M12 16V4 M7 9l5-5 5 5 M5 16v2a2 2 0 002 2h10a2 2 0 002-2v-2",
+  image: "M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1z M8.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3 M4 17l4.5-4 4 3.5L16 12l4 4",
+  clock: "M12 7v5l3 2 M12 21a9 9 0 100-18 9 9 0 000 18z",
+  users: "M9 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7z M3 20v-1a5 5 0 015-5h2a5 5 0 015 5v1 M16 4.5a3.5 3.5 0 010 6.8 M21 20v-1a5 5 0 00-3.5-4.7",
+  tag: "M4 4h7l9 9-7 7-9-9z M8.5 8.5h0",
+  shield: "M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6z M9 12l2 2 4-4",
+  doc: "M7 3h7l5 5v13a0 0 0 010 0H7a1 1 0 01-1-1V4a1 1 0 011-1z M14 3v5h5 M9 13h6 M9 17h6",
+  phone: "M5 4h3l1.5 5-2 1.5a12 12 0 005 5l1.5-2 5 1.5v3a1 1 0 01-1 1A16 16 0 014 6a1 1 0 011-2z",
+  headset: "M4 13v-1a8 8 0 0116 0v1 M4 13h2a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1z M20 13h-2a1 1 0 00-1 1v4a1 1 0 001 1 M17 19a4 4 0 01-4 2",
+  chat: "M5 4h14a1 1 0 011 1v10a1 1 0 01-1 1H9l-4 4V5a1 1 0 011-1z",
+  send: "M5 12l15-7-7 15-2.5-5.5z",
+  dashboard: "M4 4h7v7H4z M13 4h7v4h-7z M13 11h7v9h-7z M4 14h7v6H4z",
+  list: "M8 6h13 M8 12h13 M8 18h13 M3.5 6h0 M3.5 12h0 M3.5 18h0",
+  edit: "M4 20h4l10-10-4-4L4 16z M14 6l4 4",
+  insights: "M4 19V5 M4 19h16 M8 16l3.5-4 3 2.5L20 8",
+  trend: "M4 15l5-5 4 3 7-8 M14 5h6v6",
+  bolt: "M13 3L5 14h6l-1 7 8-11h-6z",
+  star: "M12 3l2.5 6.2 6.5.5-5 4.3 1.6 6.5L12 17l-5.6 3.5L8 14 3 9.7l6.5-.5z",
+  close: "M6 6l12 12 M18 6L6 18",
+  menu: "M4 7h16 M4 12h16 M4 17h16",
+  plus: "M12 5v14 M5 12h14",
+  money: "M12 3v18 M16 7H10a2.5 2.5 0 000 5h4a2.5 2.5 0 010 5H8",
+  pin: "M12 21s-7-6.2-7-11A7 7 0 0112 3a7 7 0 017 7c0 4.8-7 11-7 11z M12 12a2 2 0 100-4 2 2 0 000 4z",
+  ruler: "M3 7l4-4 14 14-4 4z M7 7l2 2 M11 11l2 2 M15 15l2 2",
+  bed: "M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6 M3 14h18 M7 10V8a1 1 0 011-1h3a1 1 0 011 1v2",
+  bath: "M4 12h16v3a3 3 0 01-3 3H7a3 3 0 01-3-3z M6 12V6a2 2 0 012-2 2 2 0 012 2 M6 19l-1 2 M18 19l1 2",
+  filter: "M4 5h16 M7 12h10 M10 19h4",
+  bell: "M6 10a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6 M10 21h4",
+  search: "M11 11m-7 0a7 7 0 1014 0 7 7 0 10-14 0 M21 21l-4-4",
+};
+
+function Icon({ name, size = 20, stroke = 2, className = "", style = {} }) {
+  const d = PATHS[name];
+  const directional = name === "arrowRight" || name === "arrowLeft" || name === "send";
+  const cls = (directional ? "flip-rtl " : "") + className;
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round"
+      className={cls} style={style} aria-hidden="true">
+      {d.split(" M").map((seg, i) => <path key={i} d={(i === 0 ? "" : "M") + seg} />)}
+    </svg>
+  );
+}
+
+/* ---------------- Logo ---------------- */
+function Logo({ size = 30, light = false, showText = true }) {
+  const fg = light ? "#fff" : "var(--navy)";
+  return (
+    <div className="row gap-3" style={{ alignItems: "center" }}>
+      <div style={{
+        width: size, height: size, borderRadius: size * 0.3,
+        background: "linear-gradient(145deg, var(--blue-500), var(--blue-700))",
+        display: "grid", placeItems: "center", color: "#fff",
+        boxShadow: "0 4px 12px rgba(35,71,217,.35)", flexShrink: 0,
+      }}>
+        <Icon name="sparkle" size={size * 0.62} stroke={0} style={{ fill: "#fff", stroke: "none" }} />
+      </div>
+      {showText && (
+        <div style={{ lineHeight: 1, color: fg }}>
+          <div style={{ fontWeight: 800, fontSize: size * 0.56, letterSpacing: "-.02em" }}>Rasaia</div>
+          <div className="mono" style={{ fontSize: size * 0.3, letterSpacing: ".18em", color: light ? "rgba(255,255,255,.7)" : "var(--blue-600)", marginTop: 3, textTransform: "uppercase" }}>Clean AI</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- Badge ---------------- */
+function Badge({ children, kind = "gray", dot = false }) {
+  return (
+    <span className={`badge badge-${kind}`}>
+      {dot && <span className="dot" style={{ background: "currentColor" }} />}
+      {children}
+    </span>
+  );
+}
+
+/* ---------------- Progress steps (customer wizard) ---------------- */
+function ProgressSteps({ steps, current }) {
+  return (
+    <div className="row" style={{ gap: 0, alignItems: "center" }}>
+      {steps.map((s, i) => {
+        const done = i < current, active = i === current;
+        return (
+          <React.Fragment key={s}>
+            <div className="row gap-2" style={{ alignItems: "center" }}>
+              <div style={{
+                width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
+                display: "grid", placeItems: "center", fontSize: 12.5, fontWeight: 700,
+                background: done ? "var(--blue-600)" : active ? "var(--blue-600)" : "var(--surface-3)",
+                color: done || active ? "#fff" : "var(--ink-3)",
+                border: active ? "3px solid var(--blue-100)" : "none",
+                transition: "all .25s",
+              }}>
+                {done ? <Icon name="check" size={14} stroke={3} /> : i + 1}
+              </div>
+              <span style={{ fontSize: 13, fontWeight: active ? 700 : 500, color: active ? "var(--ink)" : "var(--ink-3)", whiteSpace: "nowrap" }}>{s}</span>
+            </div>
+            {i < steps.length - 1 && (
+              <div style={{ flex: 1, height: 2, margin: "0 12px", minWidth: 18,
+                background: done ? "var(--blue-300)" : "var(--line)", borderRadius: 2, transition: "background .25s" }} />
+            )}
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ---------------- Confidence ring ---------------- */
+function ConfidenceRing({ value, size = 132 }) {
+  const r = (size - 16) / 2, c = 2 * Math.PI * r;
+  const shown = value;
+  return (
+    <div style={{ position: "relative", width: size, height: size }}>
+      <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="var(--surface-3)" strokeWidth="9" />
+        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="url(#cg)" strokeWidth="9" strokeLinecap="round"
+          strokeDasharray={c} strokeDashoffset={c - (shown/100)*c} style={{ transition: "stroke-dashoffset .1s" }} />
+        <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="var(--blue-500)" /><stop offset="1" stopColor="var(--ai-500)" /></linearGradient></defs>
+      </svg>
+      <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", textAlign: "center" }}>
+        <div>
+          <div style={{ fontSize: size * 0.27, fontWeight: 800, letterSpacing: "-.02em", lineHeight: 1 }}>{shown}<span style={{ fontSize: size*0.13 }}>%</span></div>
+          <div className="mono" style={{ fontSize: 10, color: "var(--ink-3)", letterSpacing: ".1em", marginTop: 4 }}>CONFIDENCE</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- Stat / metric card ---------------- */
+function StatCard({ icon, label, value, delta, deltaTone = "green", accent = "var(--blue-600)", sub }) {
+  return (
+    <div className="card" style={{ padding: 22, display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div style={{ width: 42, height: 42, borderRadius: 12, background: "var(--blue-50)", color: accent, display: "grid", placeItems: "center" }}>
+          <Icon name={icon} size={21} />
+        </div>
+        {delta && <span className={`badge badge-${deltaTone}`} style={{ fontSize: 12 }}>{delta}</span>}
+      </div>
+      <div>
+        <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: "-.02em", lineHeight: 1.1 }}>{value}</div>
+        <div className="muted" style={{ fontSize: 13.5, marginTop: 5 }}>{label}</div>
+        {sub && <div className="muted" style={{ fontSize: 12, marginTop: 2 }}>{sub}</div>}
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- Photo placeholder tile (striped) ---------------- */
+function PhotoTile({ label, filled, onClick, big }) {
+  return (
+    <button onClick={onClick} style={{
+      position: "relative", aspectRatio: big ? "16/10" : "1/1", borderRadius: 14, overflow: "hidden",
+      border: filled ? "1px solid var(--line)" : "1.5px dashed #C5D0E4",
+      background: filled
+        ? "repeating-linear-gradient(135deg, #E9EEF8 0 12px, #E2E9F5 12px 24px)"
+        : "var(--surface-2)",
+      display: "grid", placeItems: "center", cursor: "pointer", transition: "border-color .15s, background .15s", width: "100%",
+    }}
+    onMouseEnter={e => { if (!filled) e.currentTarget.style.borderColor = "var(--blue-400)"; }}
+    onMouseLeave={e => { if (!filled) e.currentTarget.style.borderColor = "#C5D0E4"; }}>
+      {filled ? (
+        <div className="mono" style={{ fontSize: 11, color: "var(--ink-3)", background: "rgba(255,255,255,.85)", padding: "4px 9px", borderRadius: 6 }}>{label} photo</div>
+      ) : (
+        <div className="col" style={{ alignItems: "center", gap: 7, color: "var(--ink-3)" }}>
+          <Icon name="plus" size={20} />
+          <span style={{ fontSize: 12.5, fontWeight: 600 }}>Add photo</span>
+        </div>
+      )}
+    </button>
+  );
+}
+
+Object.assign(window, {
+  Icon, Logo, Badge, ProgressSteps, ConfidenceRing, StatCard, PhotoTile,
+});
+
+
+// === pdf.jsx ===
+/* ============================================================
+   Rasaia Clean AI — Professional PDF quote export (jsPDF)
+   Business documents render in English for font reliability.
+   ============================================================ */
+
+function generateQuotePDF(est, ref) {
+  const jsPDFCtor = window.jspdf && window.jspdf.jsPDF;
+  if (!jsPDFCtor) { alert("PDF library is still loading — please try again in a moment."); return; }
+
+  const doc = new jsPDFCtor({ unit: "pt", format: "a4" });
+  const W = doc.internal.pageSize.getWidth();   // 595
+  const M = 48;                                  // margin
+  const NAVY = [11, 23, 52], BLUE = [35, 71, 217], INK = [12, 21, 38], INK3 = [103, 116, 140], LINE = [228, 233, 242];
+  const money = (n) => "AED " + Math.round(n).toLocaleString("en-US");
+  const pt = (Rasaia.PROPERTY_TYPES.find(p => p.key === est.input.propertyType) || {}).label || "Property";
+
+  /* ---- Header band ---- */
+  doc.setFillColor(...NAVY); doc.rect(0, 0, W, 108, "F");
+  doc.setFillColor(...BLUE); doc.roundedRect(M, 34, 34, 34, 8, 8, "F");
+  doc.setTextColor(255, 255, 255);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(11);
+  doc.text("R", M + 17, 56, { align: "center" });
+  doc.setFontSize(17); doc.text("Rasaia Clean AI", M + 46, 50);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(180, 195, 230);
+  doc.text("AI CLEANING QUOTATION", M + 46, 66);
+  doc.setFontSize(9); doc.setTextColor(210, 220, 245);
+  doc.text("Reference", W - M, 46, { align: "right" });
+  doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(255, 255, 255);
+  doc.text(ref, W - M, 62, { align: "right" });
+
+  let y = 150;
+  const label = (txt, yy) => { doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...INK3); doc.text(txt.toUpperCase(), M, yy); };
+  const rule = (yy) => { doc.setDrawColor(...LINE); doc.setLineWidth(1); doc.line(M, yy, W - M, yy); };
+
+  /* ---- Recommended service ---- */
+  label("Recommended service", y);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(...INK);
+  doc.text(est.service.name, M, y + 26);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...INK3);
+  doc.text(doc.splitTextToSize(est.service.blurb, W - 2 * M - 130), M, y + 46);
+
+  // confidence chip (right)
+  doc.setFillColor(238, 243, 255); doc.roundedRect(W - M - 120, y - 6, 120, 50, 10, 10, "F");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(...BLUE);
+  doc.text(est.confidence + "%", W - M - 60, y + 20, { align: "center" });
+  doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...INK3);
+  doc.text("AI CONFIDENCE", W - M - 60, y + 34, { align: "center" });
+
+  y += 78; rule(y); y += 28;
+
+  /* ---- Metric row: duration / team / complexity ---- */
+  const metrics = [
+    ["Estimated duration", "~" + est.durationHours + " hrs"],
+    ["Recommended team", est.team + (est.team > 1 ? " cleaners" : " cleaner")],
+    ["Complexity", est.complexity],
+  ];
+  const colW = (W - 2 * M) / 3;
+  metrics.forEach((m, i) => {
+    const x = M + i * colW;
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...INK3);
+    doc.text(m[0].toUpperCase(), x, y);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(15); doc.setTextColor(...INK);
+    doc.text(m[1], x, y + 20);
+  });
+  y += 44; rule(y); y += 26;
+
+  /* ---- Price range band ---- */
+  doc.setFillColor(11, 23, 52); doc.roundedRect(M, y, W - 2 * M, 64, 12, 12, "F");
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(180, 195, 230);
+  doc.text("ESTIMATED PRICE RANGE", M + 20, y + 24);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(20); doc.setTextColor(255, 255, 255);
+  doc.text(money(est.priceLow) + "  –  " + money(est.priceHigh), M + 20, y + 48);
+  y += 92;
+
+  /* ---- Property information ---- */
+  label("Property information", y); y += 16;
+  const info = [
+    ["Property type", pt],
+    ["Size", est.input.size.toLocaleString() + " sq ft"],
+    ["Bedrooms", String(est.input.bedrooms)],
+    ["Bathrooms", String(est.input.bathrooms)],
+    ["Cleaning type", est.service.name],
+  ];
+  info.forEach((r, i) => {
+    const yy = y + i * 22;
+    doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...INK3);
+    doc.text(r[0], M, yy);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...INK);
+    doc.text(r[1], W - M, yy, { align: "right" });
+    doc.setDrawColor(...LINE); doc.setLineWidth(0.6); doc.line(M, yy + 7, W - M, yy + 7);
+  });
+  y += info.length * 22 + 18;
+
+  /* ---- AI reasoning ---- */
+  label("AI reasoning", y); y += 18;
+  doc.setFontSize(9.5);
+  est.reasoning.forEach((r, i) => {
+    doc.setFont("helvetica", "bold"); doc.setTextColor(...BLUE);
+    doc.text(String(i + 1).padStart(2, "0"), M, y);
+    doc.setTextColor(...INK); doc.text(r.t, M + 24, y);
+    doc.setFont("helvetica", "normal"); doc.setTextColor(...INK3);
+    const lines = doc.splitTextToSize(r.d, W - 2 * M - 24);
+    doc.text(lines, M + 24, y + 14);
+    y += 14 + lines.length * 12 + 12;
+  });
+
+  /* ---- Footer ---- */
+  const fy = doc.internal.pageSize.getHeight() - 40;
+  doc.setDrawColor(...LINE); doc.line(M, fy - 14, W - M, fy - 14);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...INK3);
+  doc.text("Estimate valid for 14 days from issue · No commitment required · Generated by Rasaia Clean AI", M, fy);
+  doc.text(new Date().toLocaleDateString("en-GB"), W - M, fy, { align: "right" });
+
+  doc.save("Rasaia-Quote-" + ref + ".pdf");
+}
+
+window.generateQuotePDF = generateQuotePDF;
+
+
+// === screen_landing.jsx ===
+/* ============================================================
+   Screen 1 — Landing Page
+   ============================================================ */
+
+function NavBar({ onStart, onCompany, dark }) {
+  const { t } = useLang();
+  return (
+    <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(255,255,255,.82)", backdropFilter: "blur(14px)", borderBottom: "1px solid var(--line)" }}>
+      <div className="container row" style={{ height: 70, justifyContent: "space-between" }}>
+        <Logo size={30} />
+        <nav className="row gap-6" style={{ display: "flex" }}>
+          <a className="nav-link" href="#how">{t("How it works")}</a>
+          <a className="nav-link" href="#benefits">{t("Benefits")}</a>
+          <a className="nav-link" href="#services">{t("Services")}</a>
+        </nav>
+        <div className="row gap-3">
+          <LanguageToggle compact />
+          <button className="btn btn-ghost btn-sm" onClick={onCompany}>
+            <Icon name="dashboard" size={16} /> {t("Business portal")}
+          </button>
+          <button className="btn btn-primary btn-sm" onClick={onStart}>{t("Start estimate")}</button>
+        </div>
+      </div>
+      <style>{`.nav-link{font-size:14.5px;font-weight:600;color:var(--ink-2);transition:color .15s}.nav-link:hover{color:var(--blue-600)}
+      @media(max-width:980px){header nav{display:none!important}}`}</style>
+    </header>
+  );
+}
+
+function HeroQuoteCard() {
+  const { t } = useLang();
+  return (
+    <div className="card" style={{ padding: 0, overflow: "hidden", boxShadow: "var(--sh-xl)", width: "100%", maxWidth: 420 }}>
+      <div style={{ background: "linear-gradient(140deg, var(--blue-700), var(--navy))", padding: "20px 22px", color: "#fff" }}>
+        <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}>
+          <Badge kind="ai" dot>{t("AI estimate ready")}</Badge>
+          <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,.6)" }}>RQ-4821</span>
+        </div>
+        <div style={{ marginTop: 16, fontSize: 13, color: "rgba(255,255,255,.7)" }}>{t("Recommended service")}</div>
+        <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-end", marginTop: 4 }}>
+          <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: "-.02em" }}>{t("Deep Cleaning")}</div>
+        </div>
+      </div>
+      <div style={{ padding: 22 }}>
+        <div className="row" style={{ justifyContent: "space-between", marginBottom: 16 }}>
+          <div>
+            <div className="mono" style={{ fontSize: 10.5, color: "var(--ink-3)", letterSpacing: ".08em" }}>{t("ESTIMATED RANGE")}</div>
+            <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-.02em", marginTop: 3 }} className="keep-ltr">AED 1,060–1,340</div>
+          </div>
+          <ConfidenceRing value={92} size={74} />
+        </div>
+        <div className="row gap-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+          {[["clock", t("Duration"), t("~4.5 hrs")], ["users", t("Team"), t("2 cleaners")]].map(([ic, l, v]) => (
+            <div key={l} style={{ background: "var(--surface-2)", borderRadius: 12, padding: "12px 14px" }}>
+              <div className="row gap-2" style={{ color: "var(--blue-600)" }}><Icon name={ic} size={15} /><span style={{ fontSize: 12, color: "var(--ink-3)", fontWeight: 600 }}>{l}</span></div>
+              <div style={{ fontSize: 16, fontWeight: 700, marginTop: 5 }}>{v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Landing({ onStart, onCompany }) {
+  const { t } = useLang();
+  const benefits = [
+    { icon: "bolt", title: "Instant, not hours later", body: "Replace back-and-forth WhatsApp threads with a quote generated the moment a customer submits." },
+    { icon: "shield", title: "Consistent every time", body: "The same property always gets the same estimate — no more variance between employees." },
+    { icon: "insights", title: "Smarter with every photo", body: "AI reads property photos to refine complexity, labor and pricing — and shows its reasoning." },
+    { icon: "money", title: "Protect your margins", body: "Transparent labor and team-size logic keeps every quote priced to win without underselling." },
+  ];
+  const steps = [
+    { n: "01", icon: "building", title: "Describe the property", body: "Type, size, bedrooms, bathrooms and the cleaning needed." },
+    { n: "02", icon: "image", title: "Upload a few photos", body: "Living room, kitchen, bathrooms — anything that helps." },
+    { n: "03", icon: "sparkle", title: "Get an instant quote", body: "Service, duration, team size and a clear price range." },
+  ];
+  const services = Object.values(Rasaia.SERVICES);
+
+  return (
+    <div style={{ background: "var(--surface)" }}>
+      <NavBar onStart={onStart} onCompany={onCompany} />
+
+      {/* HERO */}
+      <section style={{ position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(1200px 500px at 78% -10%, var(--blue-50), transparent 60%)" }} />
+        <div className="container" style={{ position: "relative", padding: "72px 24px 80px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.05fr .95fr", gap: 56, alignItems: "center" }} className="hero-grid">
+            <div className="fade-up">
+              <Badge kind="blue" dot>{t("AI-powered cleaning quotations")}</Badge>
+              <h1 className="t-display" style={{ marginTop: 20 }}>
+                {t("Get an instant cleaning estimate in")} <span style={{ background: "linear-gradient(120deg, var(--blue-600), var(--ai-500))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t("under 2 minutes")}</span>
+              </h1>
+              <p className="lead" style={{ marginTop: 22, maxWidth: 520 }}>
+                {t("Rasaia Clean AI turns property details and a handful of photos into a precise, consistent quotation — service, labor, duration and price — without a single WhatsApp message.")}
+              </p>
+              <div className="row gap-3 wrap" style={{ marginTop: 32 }}>
+                <button className="btn btn-primary btn-lg" onClick={onStart}>
+                  {t("Start your estimate")} <Icon name="arrowRight" size={18} />
+                </button>
+                <button className="btn btn-ghost btn-lg" onClick={onCompany}>
+                  <Icon name="dashboard" size={18} /> {t("View business portal")}
+                </button>
+              </div>
+              <div className="row gap-6 wrap" style={{ marginTop: 36 }}>
+                {[["1,284", t("quotes generated")], ["~90s", t("average time to quote")], ["94%", t("estimate accuracy")]].map(([v, l]) => (
+                  <div key={l}>
+                    <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: "-.02em" }} className="keep-ltr">{v}</div>
+                    <div className="muted" style={{ fontSize: 13 }}>{l}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="row" style={{ justifyContent: "center", position: "relative" }}>
+              <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%", background: "var(--blue-100)", filter: "blur(60px)", opacity: .7, zIndex: 0 }} />
+              <div className="fade-up" style={{ animationDelay: ".12s", position: "relative", zIndex: 1 }}><HeroQuoteCard /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST STRIP */}
+      <section style={{ borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", background: "var(--surface-2)" }}>
+        <div className="container row wrap" style={{ padding: "20px 24px", gap: 14, justifyContent: "center", color: "var(--ink-3)" }}>
+          <span style={{ fontSize: 13, fontWeight: 600 }}>{t("Built for cleaning companies that quote at scale")}</span>
+          <span style={{ opacity: .4 }}>•</span>
+          {["Residential", "Commercial", "Move-out & handover", "Post-renovation"].map(tg => (
+            <span key={tg} className="badge badge-gray">{t(tg)}</span>
+          ))}
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how" className="container" style={{ padding: "84px 24px" }}>
+        <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto" }}>
+          <div className="eyebrow">{t("How it works")}</div>
+          <h2 className="t-h1" style={{ marginTop: 12 }}>{t("From property to priced quote in three steps")}</h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24, marginTop: 48 }} className="g3">
+          {steps.map((s, i) => (
+            <div key={s.n} className="card" style={{ padding: 28, position: "relative" }}>
+              <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ width: 48, height: 48, borderRadius: 14, background: "linear-gradient(145deg, var(--blue-500), var(--blue-700))", color: "#fff", display: "grid", placeItems: "center", boxShadow: "var(--sh-blue)" }}>
+                  <Icon name={s.icon} size={23} />
+                </div>
+                <span className="mono" style={{ fontSize: 30, fontWeight: 800, color: "var(--line)" }}>{s.n}</span>
+              </div>
+              <h3 className="t-h3" style={{ marginTop: 20 }}>{t(s.title)}</h3>
+              <p className="muted" style={{ marginTop: 8, fontSize: 14.5, lineHeight: 1.55 }}>{t(s.body)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* BENEFITS */}
+      <section id="benefits" style={{ background: "var(--surface-2)", borderTop: "1px solid var(--line)" }}>
+        <div className="container" style={{ padding: "84px 24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 56, alignItems: "center" }} className="hero-grid">
+            <div>
+              <div className="eyebrow">{t("Why Rasaia")}</div>
+              <h2 className="t-h1" style={{ marginTop: 12 }}>{t("Stop guessing. Start quoting with confidence.")}</h2>
+              <p className="lead" style={{ marginTop: 18 }}>
+                {t("Manual quotes are slow and inconsistent — two employees, two prices. Rasaia standardizes the entire process behind one AI engine.")}
+              </p>
+              <button className="btn btn-dark btn-lg" style={{ marginTop: 28 }} onClick={onStart}>{t("Try it now")} <Icon name="arrowRight" size={18} /></button>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }} className="g2">
+              {benefits.map(b => (
+                <div key={b.title} className="card" style={{ padding: 24 }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 11, background: "var(--blue-50)", color: "var(--blue-600)", display: "grid", placeItems: "center" }}><Icon name={b.icon} size={20} /></div>
+                  <h3 style={{ fontSize: 16.5, fontWeight: 700, marginTop: 16 }}>{t(b.title)}</h3>
+                  <p className="muted" style={{ marginTop: 7, fontSize: 13.5, lineHeight: 1.55 }}>{t(b.body)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="container" style={{ padding: "84px 24px" }}>
+        <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
+          <div>
+            <div className="eyebrow">{t("Services we price")}</div>
+            <h2 className="t-h1" style={{ marginTop: 12 }}>{t("Every cleaning type, one engine")}</h2>
+          </div>
+          <button className="btn btn-soft" onClick={onStart}>{t("Get a quote")} <Icon name="arrowRight" size={16} /></button>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 18, marginTop: 40 }} className="g4">
+          {services.map(s => (
+            <div key={s.key} className="svc-card card" style={{ padding: 22, transition: "transform .18s, box-shadow .18s, border-color .18s", cursor: "pointer" }} onClick={onStart}>
+              <Badge kind="blue">{t(s.complexity)}</Badge>
+              <h3 className="t-h3" style={{ marginTop: 16 }}>{t(s.name)}</h3>
+              <p className="muted" style={{ marginTop: 8, fontSize: 13.5, lineHeight: 1.5, minHeight: 60 }}>{t(s.blurb)}</p>
+              <div className="row" style={{ color: "var(--blue-600)", fontSize: 14, fontWeight: 600, marginTop: 8 }}>{t("From")} {Rasaia.fmt(s.rate * 600)} <Icon name="arrowRight" size={15} style={{ marginInlineStart: 6 }} /></div>
+            </div>
+          ))}
+        </div>
+        <style>{`.svc-card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg);border-color:var(--blue-200)}`}</style>
+      </section>
+
+      {/* CTA */}
+      <section className="container" style={{ padding: "0 24px 90px" }}>
+        <div style={{ borderRadius: 28, overflow: "hidden", position: "relative", background: "linear-gradient(135deg, var(--blue-700), var(--navy))", padding: "64px 48px", textAlign: "center", color: "#fff", boxShadow: "var(--sh-xl)" }}>
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(600px 300px at 20% 0%, rgba(110,89,242,.4), transparent 60%)" }} />
+          <div style={{ position: "relative" }}>
+            <h2 className="t-h1" style={{ color: "#fff" }}>{t("Your next quote is 2 minutes away")}</h2>
+            <p className="lead" style={{ color: "rgba(255,255,255,.78)", marginTop: 16, maxWidth: 560, marginInline: "auto" }}>{t("No sign-up required to try. Generate a full AI quotation and see exactly how Rasaia thinks.")}</p>
+            <button className="btn btn-lg" style={{ marginTop: 30, background: "#fff", color: "var(--blue-700)" }} onClick={onStart}>{t("Start your free estimate")} <Icon name="arrowRight" size={18} /></button>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ borderTop: "1px solid var(--line)", background: "var(--surface-2)" }}>
+        <div className="container row" style={{ padding: "32px 24px", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+          <Logo size={26} />
+          <span className="muted" style={{ fontSize: 13 }}>{t("© 2026 Rasaia Clean AI · Quotation intelligence for cleaning companies")}</span>
+        </div>
+      </footer>
+
+      <style>{`
+        @media(max-width:920px){ .hero-grid{grid-template-columns:1fr!important;gap:40px!important} .g4{grid-template-columns:1fr 1fr!important} .g3{grid-template-columns:1fr!important} }
+        @media(max-width:560px){ .g2,.g4{grid-template-columns:1fr!important} .t-display{font-size:42px!important} }
+      `}</style>
+    </div>
+  );
+}
+
+window.Landing = Landing;
+window.NavBar = NavBar;
+
+
+// === screen_wizard.jsx ===
+/* ============================================================
+   Screens 2–4 — Property Info · Photo Upload · AI Analysis
+   ============================================================ */
+
+const WIZ_STEPS = ["Property", "Photos", "Analysis", "Quote"];
+
+function WizardShell({ step, onExit, children, footer }) {
+  const { t } = useLang();
+  return (
+    <div style={{ minHeight: "100vh", background: "var(--surface-2)", display: "flex", flexDirection: "column" }}>
+      <header style={{ position: "sticky", top: 0, zIndex: 40, background: "rgba(255,255,255,.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--line)" }}>
+        <div className="container row" style={{ height: 66, justifyContent: "space-between", gap: 24 }}>
+          <Logo size={28} />
+          <div style={{ flex: 1, maxWidth: 560, display: "flex", justifyContent: "center" }} className="wiz-steps">
+            <ProgressSteps steps={WIZ_STEPS.map(s => t(s))} current={step} />
+          </div>
+          <div className="row gap-3">
+            <LanguageToggle compact />
+            <button className="btn btn-ghost btn-sm" onClick={onExit}><Icon name="close" size={15} /> {t("Exit")}</button>
+          </div>
+        </div>
+      </header>
+      <main style={{ flex: 1 }}>{children}</main>
+      {footer}
+      <style>{`@media(max-width:820px){.wiz-steps{display:none!important}}`}</style>
+    </div>
+  );
+}
+
+function Stepper({ value, onChange, min = 0, max = 10, icon, label }) {
+  return (
+    <div>
+      <span className="field-label">{label}</span>
+      <div className="row" style={{ border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden", background: "var(--surface)", height: 50 }}>
+        <button onClick={() => onChange(Math.max(min, value - 1))} className="step-btn" style={{ width: 48, height: "100%", color: "var(--ink-2)", fontSize: 20 }}>−</button>
+        <div className="row grow" style={{ justifyContent: "center", gap: 8, borderLeft: "1px solid var(--line)", borderRight: "1px solid var(--line)", height: "100%", color: "var(--blue-600)" }}>
+          <Icon name={icon} size={17} /><span style={{ fontSize: 17, fontWeight: 700, color: "var(--ink)" }}>{value}</span>
+        </div>
+        <button onClick={() => onChange(Math.min(max, value + 1))} className="step-btn" style={{ width: 48, height: "100%", color: "var(--ink-2)", fontSize: 18 }}>+</button>
+      </div>
+      <style>{`.step-btn:hover{background:var(--surface-2);color:var(--blue-600)}`}</style>
+    </div>
+  );
+}
+
+function OptionCard({ active, icon, title, desc, onClick }) {
+  return (
+    <button onClick={onClick} style={{
+      textAlign: "start", padding: 18, borderRadius: 16, width: "100%",
+      border: active ? "1.5px solid var(--blue-600)" : "1.5px solid var(--line)",
+      background: active ? "var(--blue-50)" : "var(--surface)",
+      boxShadow: active ? "0 0 0 4px var(--blue-50)" : "var(--sh-xs)",
+      transition: "all .15s", cursor: "pointer",
+      display: "flex", gap: 14, alignItems: desc ? "flex-start" : "center",
+    }}>
+      <div style={{ width: 42, height: 42, borderRadius: 11, flexShrink: 0, display: "grid", placeItems: "center",
+        background: active ? "var(--blue-600)" : "var(--surface-2)", color: active ? "#fff" : "var(--ink-2)", transition: "all .15s" }}>
+        <Icon name={icon} size={21} />
+      </div>
+      <div style={{ flex: 1 }}>
+        <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontWeight: 700, fontSize: 15 }}>{title}</span>
+          {active && <Icon name="check" size={16} stroke={3} style={{ color: "var(--blue-600)" }} />}
+        </div>
+        {desc && <div className="muted" style={{ fontSize: 13, marginTop: 4, lineHeight: 1.45 }}>{desc}</div>}
+      </div>
+    </button>
+  );
+}
+
+/* -------------------- Screen 2: Property Info -------------------- */
+function PropertyInfo({ value, onChange, onNext, onExit }) {
+  const { t } = useLang();
+  const v = value;
+  const set = (patch) => onChange({ ...v, ...patch });
+  return (
+    <WizardShell step={0} onExit={onExit}>
+      <div className="container" style={{ maxWidth: 760, padding: "44px 24px 120px" }}>
+        <div className="fade-up">
+          <div className="eyebrow">{t("Step 1 of 4")}</div>
+          <h1 className="t-h1" style={{ marginTop: 10 }}>{t("Tell us about the property")}</h1>
+          <p className="lead" style={{ marginTop: 10 }}>{t("The more accurate the details, the tighter your AI estimate.")}</p>
+        </div>
+
+        <div className="card fade-up" style={{ padding: 28, marginTop: 28, animationDelay: ".05s" }}>
+          <span className="field-label">{t("Property type")}</span>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12 }} className="g4">
+            {Rasaia.PROPERTY_TYPES.map(p => (
+              <OptionCard key={p.key} active={v.propertyType === p.key} icon={p.icon} title={t(p.label)} onClick={() => set({ propertyType: p.key })} />
+            ))}
+          </div>
+
+          <div style={{ height: 1, background: "var(--line-2)", margin: "26px 0" }} />
+
+          <div className="row" style={{ justifyContent: "space-between", alignItems: "baseline" }}>
+            <span className="field-label" style={{ marginBottom: 0 }}>{t("Property size")}</span>
+            <span style={{ fontWeight: 700, fontSize: 15 }}><span className="keep-ltr">{v.size.toLocaleString()}</span> <span className="muted" style={{ fontWeight: 500, fontSize: 13 }}>{t("sq ft")}</span></span>
+          </div>
+          <input type="range" min={350} max={6000} step={50} value={v.size} onChange={e => set({ size: +e.target.value })}
+            style={{ width: "100%", marginTop: 14, accentColor: "var(--blue-600)" }} />
+          <div className="row" style={{ justifyContent: "space-between", marginTop: 4 }}>
+            <span className="mono muted" style={{ fontSize: 11 }}>350</span><span className="mono muted" style={{ fontSize: 11 }}>6,000 {t("sq ft")}</span>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 26 }} className="g2">
+            <Stepper label={t("Bedrooms")} icon="bed" value={v.bedrooms} onChange={n => set({ bedrooms: n })} min={0} max={8} />
+            <Stepper label={t("Bathrooms")} icon="bath" value={v.bathrooms} onChange={n => set({ bathrooms: n })} min={1} max={8} />
+          </div>
+        </div>
+
+        <div className="card fade-up" style={{ padding: 28, marginTop: 20, animationDelay: ".1s" }}>
+          <span className="field-label">{t("Cleaning type")}</span>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }} className="g2">
+            {Rasaia.CLEANING_TYPES.map(c => (
+              <OptionCard key={c.key} active={v.cleaningType === c.key} icon="sparkle" title={t(c.label)} desc={t(c.desc)} onClick={() => set({ cleaningType: c.key })} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ position: "sticky", bottom: 0, background: "rgba(255,255,255,.9)", backdropFilter: "blur(12px)", borderTop: "1px solid var(--line)" }}>
+        <div className="container row" style={{ maxWidth: 760, justifyContent: "space-between", padding: "16px 24px" }}>
+          <button className="btn btn-ghost" onClick={onExit}><Icon name="arrowLeft" size={17} /> {t("Back")}</button>
+          <button className="btn btn-primary" onClick={onNext}>{t("Continue to photos")} <Icon name="arrowRight" size={17} /></button>
+        </div>
+      </div>
+    </WizardShell>
+  );
+}
+
+/* -------------------- Screen 3: Photo Upload -------------------- */
+function PhotoUpload({ photos, onChange, onNext, onBack, onExit }) {
+  const { t } = useLang();
+  const [dragOver, setDragOver] = useState(false);
+  const total = Object.values(photos).reduce((a, b) => a + b, 0);
+  const addTo = (room, n = 1) => onChange({ ...photos, [room]: Math.min(6, (photos[room] || 0) + n) });
+  const dropAll = () => onChange(Object.fromEntries(Rasaia.PHOTO_ROOMS.map(r => [r.key, Math.min(6, (photos[r.key] || 0) + 1)])));
+
+  return (
+    <WizardShell step={1} onExit={onExit}>
+      <div className="container" style={{ maxWidth: 820, padding: "44px 24px 120px" }}>
+        <div className="fade-up">
+          <div className="eyebrow">{t("Step 2 of 4")}</div>
+          <h1 className="t-h1" style={{ marginTop: 10 }}>{t("Add photos for a sharper estimate")}</h1>
+          <p className="lead" style={{ marginTop: 10 }}>{t("Optional, but photos let the AI assess real soiling and complexity. Drag & drop or click to add.")}</p>
+        </div>
+
+        {/* Dropzone */}
+        <div className="fade-up" onClick={dropAll}
+          onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={e => { e.preventDefault(); setDragOver(false); dropAll(); }}
+          style={{ marginTop: 24, borderRadius: 18, padding: "38px 24px", textAlign: "center", cursor: "pointer",
+            border: `2px dashed ${dragOver ? "var(--blue-500)" : "#C5D0E4"}`, background: dragOver ? "var(--blue-50)" : "var(--surface)", transition: "all .15s" }}>
+          <div style={{ width: 56, height: 56, borderRadius: 16, margin: "0 auto", background: "var(--blue-50)", color: "var(--blue-600)", display: "grid", placeItems: "center" }}><Icon name="upload" size={26} /></div>
+          <div style={{ fontWeight: 700, fontSize: 16, marginTop: 16 }}>{t("Drag & drop photos here")}</div>
+          <div className="muted" style={{ fontSize: 13.5, marginTop: 5 }}>{t("or click to browse · JPG, PNG, HEIC up to 20MB")}</div>
+        </div>
+
+        {/* Per-room */}
+        <div className="col gap-5" style={{ marginTop: 28 }}>
+          {Rasaia.PHOTO_ROOMS.map((room, ri) => (
+            <div key={room.key} className="card fade-up" style={{ padding: 20, animationDelay: `${ri * .04}s` }}>
+              <div className="row" style={{ justifyContent: "space-between", marginBottom: 14 }}>
+                <div>
+                  <div className="row gap-2"><span style={{ fontWeight: 700, fontSize: 15 }}>{t(room.label)}</span>{photos[room.key] > 0 && <Badge kind="green">{photos[room.key]}</Badge>}</div>
+                  <div className="muted" style={{ fontSize: 12.5, marginTop: 2 }}>{t(room.hint)}</div>
+                </div>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(96px, 1fr))", gap: 10 }}>
+                {Array.from({ length: photos[room.key] || 0 }).map((_, i) => <PhotoTile key={i} filled label={t(room.label)} />)}
+                {(photos[room.key] || 0) < 6 && <PhotoTile onClick={() => addTo(room.key)} />}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ position: "sticky", bottom: 0, background: "rgba(255,255,255,.9)", backdropFilter: "blur(12px)", borderTop: "1px solid var(--line)" }}>
+        <div className="container row" style={{ maxWidth: 820, justifyContent: "space-between", padding: "16px 24px" }}>
+          <button className="btn btn-ghost" onClick={onBack}><Icon name="arrowLeft" size={17} /> {t("Back")}</button>
+          <div className="row gap-3">
+            <span className="muted" style={{ fontSize: 13.5, fontWeight: 600 }}>{total} {total !== 1 ? t("photos") : t("photo")}</span>
+            <button className="btn btn-primary" onClick={() => onNext(total)}>{total > 0 ? t("Analyze with AI") : t("Skip & analyze")} <Icon name="sparkle" size={17} /></button>
+          </div>
+        </div>
+      </div>
+    </WizardShell>
+  );
+}
+
+/* -------------------- Screen 4: AI Analysis -------------------- */
+function AIAnalysis({ onDone, onExit }) {
+  const { t } = useLang();
+  const STAGES = [
+    { icon: "doc", label: "Reviewing property information", detail: "Type, size, rooms & cleaning scope" },
+    { icon: "image", label: "Assessing cleaning complexity", detail: "Reading photo signals & soiling levels" },
+    { icon: "users", label: "Estimating labor requirements", detail: "Hours, team size & scheduling" },
+    { icon: "money", label: "Calculating quotation", detail: "Rate model & property multipliers" },
+    { icon: "sparkle", label: "Generating recommendations", detail: "Service match & confidence scoring" },
+  ];
+  const [done, setDone] = useState(-1);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    let i = 0;
+    setActive(0);
+    const tick = () => {
+      setDone(i);
+      i++;
+      if (i < STAGES.length) { setActive(i); setTimeout(tick, 820); }
+      else setTimeout(() => onDone(), 700);
+    };
+    const tm = setTimeout(tick, 700);
+    return () => clearTimeout(tm);
+  }, []);
+  const pct = Math.round(((done + 1) / STAGES.length) * 100);
+
+  return (
+    <WizardShell step={2} onExit={onExit}>
+      <div className="container" style={{ maxWidth: 620, padding: "60px 24px 100px", textAlign: "center" }}>
+        <div className="scale-in" style={{ width: 92, height: 92, margin: "0 auto", borderRadius: 26, position: "relative",
+          background: "linear-gradient(145deg, var(--blue-500), var(--ai-500))", display: "grid", placeItems: "center", color: "#fff",
+          boxShadow: "0 18px 40px rgba(35,71,217,.4)", animation: "ringPulse 2s infinite" }}>
+          <Icon name="sparkle" size={44} stroke={0} style={{ fill: "#fff", stroke: "none" }} />
+          <div style={{ position: "absolute", inset: -6, borderRadius: 30, border: "2px solid var(--blue-200)", borderTopColor: "transparent", animation: "spin 1.1s linear infinite" }} />
+        </div>
+        <h1 className="t-h2" style={{ marginTop: 28 }}>{t("Generating your AI quotation")}</h1>
+        <p className="muted" style={{ marginTop: 8 }}>{t("Analyzing your property — this takes a few seconds.")}</p>
+
+        {/* progress bar */}
+        <div style={{ height: 7, background: "var(--surface-3)", borderRadius: 99, marginTop: 28, overflow: "hidden" }}>
+          <div style={{ height: "100%", width: pct + "%", background: "linear-gradient(90deg, var(--blue-500), var(--ai-500))", borderRadius: 99, transition: "width .6s cubic-bezier(.3,.8,.3,1)" }} />
+        </div>
+        <div className="mono muted" style={{ fontSize: 11.5, marginTop: 8, textAlign: "end" }}>{pct}%</div>
+
+        <div className="card" style={{ padding: 10, marginTop: 22, textAlign: "start" }}>
+          {STAGES.map((s, i) => {
+            const isDone = i <= done, isActive = i === active && !isDone;
+            return (
+              <div key={i} className="row gap-3" style={{ padding: "13px 14px", borderRadius: 12, background: isActive ? "var(--blue-50)" : "transparent", transition: "background .3s", opacity: i <= active || isDone ? 1 : .42 }}>
+                <div style={{ width: 34, height: 34, borderRadius: 10, flexShrink: 0, display: "grid", placeItems: "center", transition: "all .3s",
+                  background: isDone ? "var(--green-100)" : isActive ? "var(--blue-600)" : "var(--surface-3)",
+                  color: isDone ? "var(--green-600)" : isActive ? "#fff" : "var(--ink-3)" }}>
+                  {isDone ? <Icon name="check" size={17} stroke={3} style={{ animation: "popCheck .3s" }} />
+                    : isActive ? <div style={{ width: 15, height: 15, borderRadius: "50%", border: "2.5px solid rgba(255,255,255,.45)", borderTopColor: "#fff", animation: "spin .8s linear infinite" }} />
+                    : <Icon name={s.icon} size={17} />}
+                </div>
+                <div className="grow">
+                  <div style={{ fontWeight: 600, fontSize: 14.5, color: isActive || isDone ? "var(--ink)" : "var(--ink-2)" }}>{t(s.label)}</div>
+                  <div className="muted" style={{ fontSize: 12.5, marginTop: 1 }}>{t(s.detail)}</div>
+                </div>
+                {isActive && <span className="mono" style={{ fontSize: 11, color: "var(--blue-600)", animation: "pulse 1.2s infinite" }}>{t("working…")}</span>}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </WizardShell>
+  );
+}
+
+Object.assign(window, { WizardShell, PropertyInfo, PhotoUpload, AIAnalysis, WIZ_STEPS });
+
+
+// === screen_quote.jsx ===
+/* ============================================================
+   Screens 5–7 — Quote Results · AI Assistant · Confirmation
+   ============================================================ */
+
+function mdBold(text) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((p, i) => p.startsWith("**") ? <strong key={i} style={{ fontWeight: 700, color: "var(--ink)" }}>{p.slice(2, -2)}</strong> : <React.Fragment key={i}>{p}</React.Fragment>);
+}
+
+/* -------------------- AI Assistant drawer -------------------- */
+function AssistantDrawer({ est, open, onClose }) {
+  const { t, isRTL } = useLang();
+  const hidden = isRTL ? "translateX(-102%)" : "translateX(102%)";
+  const SUGGESTIONS = [t("Why was this service recommended?"), t("Why do I need") + " " + est.team + " " + t("cleaners?"), t("How was the estimate calculated?"), t("Can I reduce the estimate?")];
+  const [msgs, setMsgs] = useState([{ role: "ai", text: `Hi! I'm your Rasaia quote assistant. I generated your **${est.service.name}** estimate of ${Rasaia.fmt(est.priceLow)}–${Rasaia.fmt(est.priceHigh)}. Ask me anything about how I arrived at it.` }]);
+  const [typing, setTyping] = useState(false);
+  const [text, setText] = useState("");
+  const scrollRef = useRef(null);
+  useEffect(() => { if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight; }, [msgs, typing]);
+
+  const ask = (q) => {
+    if (!q.trim()) return;
+    setMsgs(m => [...m, { role: "user", text: q }]);
+    setText(""); setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      setMsgs(m => [...m, { role: "ai", text: Rasaia.assistantAnswer(q, est) }]);
+    }, 1100);
+  };
+
+  return (
+    <>
+      <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(11,23,52,.4)", backdropFilter: "blur(2px)", zIndex: 90, opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }} />
+      <aside style={{ position: "fixed", top: 0, insetInlineEnd: 0, bottom: 0, width: "min(440px, 94vw)", background: "var(--surface)", zIndex: 91, boxShadow: "var(--sh-xl)",
+        transform: open ? "translateX(0)" : hidden, display: "flex", flexDirection: "column" }}>
+        {/* header */}
+        <div style={{ padding: "18px 20px", borderBottom: "1px solid var(--line)", background: "linear-gradient(135deg, var(--blue-700), var(--navy))", color: "#fff" }}>
+          <div className="row" style={{ justifyContent: "space-between" }}>
+            <div className="row gap-3">
+              <div style={{ width: 38, height: 38, borderRadius: 11, background: "rgba(255,255,255,.15)", display: "grid", placeItems: "center" }}><Icon name="sparkle" size={20} stroke={0} style={{ fill: "#fff", stroke: "none" }} /></div>
+              <div><div style={{ fontWeight: 700, fontSize: 15.5 }}>{t("Quote Assistant")}</div><div style={{ fontSize: 12, color: "rgba(255,255,255,.7)" }}>{t("AI · always available")}</div></div>
+            </div>
+            <button onClick={onClose} className="row" style={{ width: 34, height: 34, borderRadius: 10, color: "#fff", background: "rgba(255,255,255,.12)", justifyContent: "center" }}><Icon name="close" size={17} /></button>
+          </div>
+        </div>
+        {/* messages */}
+        <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: 20, display: "flex", flexDirection: "column", gap: 14, background: "var(--surface-2)" }}>
+          {msgs.map((m, i) => (
+            <div key={i} style={{ alignSelf: m.role === "user" ? "flex-end" : "flex-start", maxWidth: "86%" }} className="fade-up">
+              <div style={{ padding: "12px 15px", borderRadius: m.role === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
+                background: m.role === "user" ? "var(--blue-600)" : "var(--surface)", color: m.role === "user" ? "#fff" : "var(--ink)",
+                border: m.role === "user" ? "none" : "1px solid var(--line)", fontSize: 14, lineHeight: 1.55, boxShadow: "var(--sh-xs)" }}>
+                {m.role === "ai" ? mdBold(m.text) : m.text}
+              </div>
+            </div>
+          ))}
+          {typing && (
+            <div style={{ alignSelf: "flex-start" }}>
+              <div className="row gap-2" style={{ padding: "14px 16px", borderRadius: "16px 16px 16px 4px", background: "var(--surface)", border: "1px solid var(--line)" }}>
+                {[0, 1, 2].map(d => <span key={d} style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--blue-400)", animation: `pulse 1s ${d * .15}s infinite` }} />)}
+              </div>
+            </div>
+          )}
+        </div>
+        {/* suggestions + input */}
+        <div style={{ padding: 16, borderTop: "1px solid var(--line)", background: "var(--surface)" }}>
+          <div className="row wrap gap-2" style={{ marginBottom: 12 }}>
+            {SUGGESTIONS.map(s => (
+              <button key={s} onClick={() => ask(s)} style={{ fontSize: 12.5, fontWeight: 600, color: "var(--blue-700)", background: "var(--blue-50)", padding: "7px 12px", borderRadius: 99, transition: "background .15s" }}
+                onMouseEnter={e => e.currentTarget.style.background = "var(--blue-100)"} onMouseLeave={e => e.currentTarget.style.background = "var(--blue-50)"}>{s}</button>
+            ))}
+          </div>
+          <form className="row gap-2" onSubmit={e => { e.preventDefault(); ask(text); }}>
+            <input className="input" style={{ height: 46 }} placeholder={t("Ask about your quote…")} value={text} onChange={e => setText(e.target.value)} />
+            <button type="submit" className="btn btn-primary" style={{ width: 46, padding: 0, flexShrink: 0 }}><Icon name="send" size={18} /></button>
+          </form>
+        </div>
+      </aside>
+    </>
+  );
+}
+
+/* -------------------- Screen 5: Quote Results -------------------- */
+function QuoteResults({ est, onExit, onSubmit, onBack }) {
+  const { t } = useLang();
+  const REF = "RQ-4821";
+  const [assistant, setAssistant] = useState(false);
+  const [openReason, setOpenReason] = useState(0);
+  const pt = Rasaia.PROPERTY_TYPES.find(p => p.key === est.input.propertyType);
+  const summary = [
+    { icon: pt?.icon || "home", label: t("Property type"), value: t(pt?.label) },
+    { icon: "ruler", label: t("Size"), value: est.input.size.toLocaleString() + " " + t("sq ft") },
+    { icon: "bed", label: t("Bedrooms"), value: est.input.bedrooms },
+    { icon: "bath", label: t("Bathrooms"), value: est.input.bathrooms },
+    { icon: "sparkle", label: t("Cleaning type"), value: t(est.service.name) },
+  ];
+
+  return (
+    <WizardShell step={3} onExit={onExit}>
+      <div className="container" style={{ maxWidth: 1080, padding: "40px 24px 110px" }}>
+        <div className="row fade-up" style={{ justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 22 }}>
+          <div>
+            <Badge kind="green" dot>{t("Quote generated")}</Badge>
+            <h1 className="t-h1" style={{ marginTop: 12 }}>{t("Your AI cleaning quotation")}</h1>
+            <p className="muted" style={{ marginTop: 6 }}>{t("Reference")} <span className="mono">{REF}</span> · {t("generated just now")}</p>
+          </div>
+          <button className="btn btn-soft" onClick={() => setAssistant(true)}><Icon name="chat" size={17} /> {t("Ask the AI assistant")}</button>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1.55fr 1fr", gap: 22, alignItems: "start" }} className="quote-grid">
+          {/* LEFT */}
+          <div className="col gap-5">
+            {/* headline card */}
+            <div className="card fade-up" style={{ padding: 0, overflow: "hidden" }}>
+              <div style={{ background: "linear-gradient(135deg, var(--blue-700), var(--navy))", color: "#fff", padding: "26px 28px", position: "relative", overflow: "hidden" }}>
+                <div style={{ position: "absolute", inset: 0, background: "radial-gradient(400px 200px at 90% 0%, rgba(110,89,242,.45), transparent 60%)" }} />
+                <div className="row" style={{ position: "relative", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 20 }}>
+                  <div>
+                    <div style={{ fontSize: 13, color: "rgba(255,255,255,.7)" }}>{t("Recommended service")}</div>
+                    <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: "-.02em", marginTop: 4 }}>{t(est.service.name)}</div>
+                    <div style={{ fontSize: 14, color: "rgba(255,255,255,.78)", marginTop: 8, maxWidth: 340 }}>{t(est.service.blurb)}</div>
+                    <div style={{ marginTop: 20 }}>
+                      <div className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,.6)", letterSpacing: ".08em" }}>{t("ESTIMATED PRICE RANGE")}</div>
+                      <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: "-.02em", marginTop: 4 }} className="keep-ltr">{Rasaia.fmt(est.priceLow)} – {Rasaia.fmt(est.priceHigh)}</div>
+                    </div>
+                  </div>
+                  <div style={{ background: "rgba(255,255,255,.1)", borderRadius: 18, padding: 8 }}><ConfidenceRing value={est.confidence} size={120} /></div>
+                </div>
+              </div>
+              {/* metric strip */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}>
+                {[["clock", t("Estimated duration"), `~${est.durationHours} ${t("hrs")}`], ["users", t("Recommended team"), `${est.team} ${est.team > 1 ? t("cleaners") : t("cleaner")}`], ["bolt", t("Complexity"), t(est.complexity)]].map(([ic, l, val], i) => (
+                  <div key={l} style={{ padding: "20px 22px", borderInlineEnd: i < 2 ? "1px solid var(--line)" : "none" }}>
+                    <div className="row gap-2" style={{ color: "var(--blue-600)" }}><Icon name={ic} size={17} /><span className="muted" style={{ fontSize: 12.5, fontWeight: 600 }}>{l}</span></div>
+                    <div style={{ fontSize: 21, fontWeight: 800, marginTop: 8, letterSpacing: "-.01em" }}>{val}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* AI reasoning */}
+            <div className="card fade-up" style={{ padding: 24, animationDelay: ".05s" }}>
+              <div className="row gap-3" style={{ marginBottom: 18 }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, background: "var(--ai-100)", color: "var(--ai-500)", display: "grid", placeItems: "center" }}><Icon name="sparkle" size={19} /></div>
+                <div><h3 className="t-h3">{t("AI reasoning")}</h3><div className="muted" style={{ fontSize: 13 }}>{t("How Rasaia built this estimate")}</div></div>
+              </div>
+              <div className="col" style={{ gap: 8 }}>
+                {est.reasoning.map((r, i) => {
+                  const open = openReason === i;
+                  return (
+                    <div key={i} style={{ border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden", background: open ? "var(--surface-2)" : "var(--surface)" }}>
+                      <button onClick={() => setOpenReason(open ? -1 : i)} className="row" style={{ width: "100%", justifyContent: "space-between", padding: "14px 16px", textAlign: "start" }}>
+                        <span className="row gap-3"><span className="mono" style={{ fontSize: 12, color: "var(--blue-600)", fontWeight: 600 }}>{String(i + 1).padStart(2, "0")}</span><span style={{ fontWeight: 700, fontSize: 14.5 }}>{t(r.t)}</span></span>
+                        <Icon name="arrowRight" size={16} style={{ color: "var(--ink-3)", transform: open ? "rotate(90deg)" : "none", transition: "transform .2s" }} />
+                      </button>
+                      {open && <div className="muted fade-in" style={{ padding: "0 16px 16px 46px", fontSize: 13.5, lineHeight: 1.6 }}>{r.d}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT rail */}
+          <div className="col gap-5" style={{ position: "sticky", top: 86 }}>
+            <div className="card fade-up" style={{ padding: 22, animationDelay: ".08s" }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>{t("Take action")}</h3>
+              <div className="col gap-3">
+                <button className="btn btn-primary btn-block" onClick={() => onSubmit("callback")}><Icon name="phone" size={17} /> {t("Request a callback")}</button>
+                <button className="btn btn-ghost btn-block" onClick={() => onSubmit("advisor")}><Icon name="headset" size={17} /> {t("Speak to an advisor")}</button>
+                <button className="btn btn-ghost btn-block" onClick={() => Rasaia_downloadPDF(est, REF)}><Icon name="doc" size={17} /> {t("Download PDF quote")}</button>
+              </div>
+              <div className="row gap-2" style={{ marginTop: 16, padding: "12px 14px", background: "var(--green-100)", borderRadius: 12, color: "var(--green-600)" }}>
+                <Icon name="shield" size={17} /><span style={{ fontSize: 12.5, fontWeight: 600, lineHeight: 1.4 }}>{t("Estimate valid for 14 days · no commitment")}</span>
+              </div>
+            </div>
+
+            <div className="card fade-up" style={{ padding: 22, animationDelay: ".12s" }}>
+              <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14 }}>{t("Property summary")}</h3>
+              <div className="col" style={{ gap: 0 }}>
+                {summary.map((s, i) => (
+                  <div key={s.label} className="row" style={{ justifyContent: "space-between", padding: "11px 0", borderTop: i ? "1px solid var(--line-2)" : "none" }}>
+                    <span className="row gap-2 muted" style={{ fontSize: 13.5 }}><Icon name={s.icon} size={15} style={{ color: "var(--blue-500)" }} /> {s.label}</span>
+                    <span style={{ fontSize: 13.5, fontWeight: 700 }}>{s.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button className="card fade-up" onClick={() => setAssistant(true)} style={{ padding: 18, animationDelay: ".15s", textAlign: "start", cursor: "pointer", border: "1px solid var(--blue-200)", background: "var(--blue-50)", display: "flex", gap: 14, alignItems: "center", width: "100%" }}>
+              <div style={{ width: 40, height: 40, borderRadius: 11, background: "var(--blue-600)", color: "#fff", display: "grid", placeItems: "center", flexShrink: 0 }}><Icon name="chat" size={20} /></div>
+              <div><div style={{ fontWeight: 700, fontSize: 14 }}>{t("Questions about your quote?")}</div><div className="muted" style={{ fontSize: 12.5 }}>{t("Chat with the AI assistant →")}</div></div>
+            </button>
+          </div>
+        </div>
+
+        {/* BOOKING + CONTACT */}
+        <div className="col gap-5" style={{ marginTop: 22 }}>
+          <BookingForm est={est} refNo={REF} />
+          <ContactSection />
+        </div>
+
+        <div className="row" style={{ marginTop: 28 }}><button className="btn btn-ghost" onClick={onBack}><Icon name="arrowLeft" size={17} /> {t("Edit details")}</button></div>
+      </div>
+
+      <AssistantDrawer est={est} open={assistant} onClose={() => setAssistant(false)} />
+      <style>{`@media(max-width:880px){.quote-grid{grid-template-columns:1fr!important}.quote-grid>div:last-child{position:static!important}}`}</style>
+    </WizardShell>
+  );
+}
+
+/* helper kept on window so the button can call into pdf.jsx */
+function Rasaia_downloadPDF(est, ref) { if (window.generateQuotePDF) window.generateQuotePDF(est, ref); }
+
+/* -------------------- Screen 7: Confirmation -------------------- */
+function Confirmation({ est, mode, onHome, onCompany }) {
+  const { t } = useLang();
+  const ref = "RQ-4821";
+  return (
+    <div style={{ minHeight: "100vh", background: "var(--surface-2)", display: "flex", flexDirection: "column" }}>
+      <header style={{ borderBottom: "1px solid var(--line)", background: "var(--surface)" }}>
+        <div className="container row" style={{ height: 66, justifyContent: "space-between" }}><Logo size={28} /><div className="row gap-3"><LanguageToggle compact /><button className="btn btn-ghost btn-sm" onClick={onHome}>{t("Back to home")}</button></div></div>
+      </header>
+      <main className="row" style={{ flex: 1, justifyContent: "center", padding: "48px 24px" }}>
+        <div className="card scale-in" style={{ maxWidth: 540, width: "100%", padding: 0, overflow: "hidden", boxShadow: "var(--sh-lg)" }}>
+          <div style={{ padding: "44px 36px 32px", textAlign: "center", background: "linear-gradient(180deg, var(--green-100), var(--surface))" }}>
+            <div style={{ width: 72, height: 72, margin: "0 auto", borderRadius: "50%", background: "var(--green-600)", display: "grid", placeItems: "center", color: "#fff", boxShadow: "0 12px 28px rgba(14,159,110,.4)", animation: "popCheck .5s" }}><Icon name="check" size={38} stroke={3} /></div>
+            <h1 className="t-h2" style={{ marginTop: 22 }}>{t("Request successfully submitted")}</h1>
+            <p className="muted" style={{ marginTop: 8, lineHeight: 1.55 }}>{mode === "advisor" ? t("An advisor will reach out shortly to walk you through your quote.") : t("Our team has received your quote and will call you back to confirm details.")}</p>
+          </div>
+          <div style={{ padding: "28px 36px 36px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div style={{ background: "var(--surface-2)", borderRadius: 14, padding: "16px 18px" }}>
+                <div className="mono muted" style={{ fontSize: 10.5, letterSpacing: ".08em" }}>{t("REFERENCE NUMBER")}</div>
+                <div style={{ fontSize: 20, fontWeight: 800, marginTop: 5 }}>{ref}</div>
+              </div>
+              <div style={{ background: "var(--surface-2)", borderRadius: 14, padding: "16px 18px" }}>
+                <div className="mono muted" style={{ fontSize: 10.5, letterSpacing: ".08em" }}>{t("EXPECTED CALLBACK")}</div>
+                <div style={{ fontSize: 20, fontWeight: 800, marginTop: 5 }}>{t("Within 30 min")}</div>
+              </div>
+            </div>
+            <div className="row gap-3" style={{ justifyContent: "space-between", padding: "16px 18px", marginTop: 12, background: "var(--blue-50)", borderRadius: 14 }}>
+              <span className="row gap-2" style={{ fontSize: 13.5, fontWeight: 600, color: "var(--blue-700)" }}><Icon name="sparkle" size={16} /> {t(est.service.name)}</span>
+              <span style={{ fontSize: 14, fontWeight: 800, color: "var(--blue-700)" }} className="keep-ltr">{Rasaia.fmt(est.priceLow)}–{Rasaia.fmt(est.priceHigh)}</span>
+            </div>
+            <div className="col gap-3" style={{ marginTop: 24 }}>
+              <button className="btn btn-primary btn-block btn-lg" onClick={onHome}>{t("Done")}</button>
+              <button className="btn btn-ghost btn-block" onClick={onCompany}><Icon name="dashboard" size={16} /> {t("View the business portal")}</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+Object.assign(window, { QuoteResults, Confirmation, AssistantDrawer, Rasaia_downloadPDF });
+
+
+// === screen_booking_contact.jsx ===
+/* ============================================================
+   Booking Request Form + Contact Section
+   Appended to the quotation results page. Matches existing styling.
+   ============================================================ */
+
+const CONTACT = {
+  phone: "+971 4 555 0199",
+  phoneHref: "tel:+97145550199",
+  email: "hello@rasaiaclean.ai",
+  whatsapp: "+971 50 555 0199",
+  whatsappHref: "https://wa.me/971505550199",
+};
+
+function FieldShell({ label, required, error, children }) {
+  return (
+    <div>
+      <label className="field-label">{label}{required && <span style={{ color: "var(--red-600)", marginInlineStart: 3 }}>*</span>}</label>
+      {children}
+      {error && <div style={{ color: "var(--red-600)", fontSize: 12, marginTop: 6, fontWeight: 600 }}>{error}</div>}
+    </div>
+  );
+}
+
+function BookingForm({ est, refNo }) {
+  const { t, isRTL } = useLang();
+  const [form, setForm] = useState({ name: "", phone: "", email: "", date: "", notes: "" });
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const set = (k, v) => { setForm(f => ({ ...f, [k]: v })); setErrors(e => ({ ...e, [k]: null })); };
+
+  const submit = (e) => {
+    e.preventDefault();
+    const err = {};
+    if (!form.name.trim()) err.name = t("This field is required");
+    if (!form.phone.trim()) err.phone = t("This field is required");
+    if (!form.email.trim()) err.email = t("This field is required");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) err.email = t("Enter a valid email");
+    if (Object.keys(err).length) { setErrors(err); return; }
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="card scale-in" style={{ padding: 36, textAlign: "center", borderColor: "var(--green-100)" }}>
+        <div style={{ width: 60, height: 60, margin: "0 auto", borderRadius: "50%", background: "var(--green-600)", color: "#fff", display: "grid", placeItems: "center", boxShadow: "0 10px 24px rgba(14,159,110,.35)", animation: "popCheck .5s" }}><Icon name="check" size={30} stroke={3} /></div>
+        <h3 className="t-h3" style={{ marginTop: 18 }}>{t("Booking requested")}</h3>
+        <p className="muted" style={{ marginTop: 8, maxWidth: 380, marginInline: "auto", lineHeight: 1.55 }}>{t("Thanks — we've received your booking request and will confirm shortly.")}</p>
+        <div className="row gap-3" style={{ justifyContent: "center", marginTop: 18, flexWrap: "wrap" }}>
+          <Badge kind="gray">{t("Reference")} <span className="mono" style={{ fontWeight: 700 }}>{refNo}</span></Badge>
+          <Badge kind="blue">{est.service.name}</Badge>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+      <div style={{ padding: "22px 28px", borderBottom: "1px solid var(--line)" }}>
+        <div className="row gap-3">
+          <div style={{ width: 38, height: 38, borderRadius: 11, background: "var(--blue-50)", color: "var(--blue-600)", display: "grid", placeItems: "center" }}><Icon name="clock" size={20} /></div>
+          <div><h3 className="t-h3">{t("Book this cleaning")}</h3><div className="muted" style={{ fontSize: 13, marginTop: 2 }}>{t("Lock in your estimate — our team confirms the details and schedules your visit.")}</div></div>
+        </div>
+      </div>
+      <form onSubmit={submit} style={{ padding: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }} className="bk-grid">
+          <FieldShell label={t("Full Name")} required error={errors.name}>
+            <input className="input" placeholder={t("e.g. Layla Haddad")} value={form.name} onChange={e => set("name", e.target.value)} />
+          </FieldShell>
+          <FieldShell label={t("Phone Number")} required error={errors.phone}>
+            <input className="input" dir="ltr" style={{ textAlign: isRTL ? "right" : "left" }} placeholder={t("e.g. +971 50 123 4567")} value={form.phone} onChange={e => set("phone", e.target.value)} />
+          </FieldShell>
+          <FieldShell label={t("Email")} required error={errors.email}>
+            <input className="input" type="email" dir="ltr" style={{ textAlign: isRTL ? "right" : "left" }} placeholder={t("you@email.com")} value={form.email} onChange={e => set("email", e.target.value)} />
+          </FieldShell>
+          <FieldShell label={t("Preferred Date")}>
+            <input className="input" type="date" value={form.date} onChange={e => set("date", e.target.value)} />
+          </FieldShell>
+        </div>
+        <div style={{ marginTop: 18 }}>
+          <FieldShell label={t("Notes")}>
+            <textarea className="input" style={{ height: 92, padding: "12px 16px", resize: "vertical" }} placeholder={t("Access instructions, parking, special requests…")} value={form.notes} onChange={e => set("notes", e.target.value)} />
+          </FieldShell>
+        </div>
+        <div className="row gap-4" style={{ marginTop: 22, justifyContent: "space-between", flexWrap: "wrap" }}>
+          <span className="muted" style={{ fontSize: 12, maxWidth: 360, lineHeight: 1.5 }}>{t("By requesting, you agree to be contacted about this quote. No payment is taken now.")}</span>
+          <button type="submit" className="btn btn-primary btn-lg"><Icon name="check" size={18} stroke={2.5} /> {t("Request Booking")}</button>
+        </div>
+      </form>
+      <style>{`@media(max-width:620px){.bk-grid{grid-template-columns:1fr!important}}`}</style>
+    </div>
+  );
+}
+
+function ContactSection() {
+  const { t } = useLang();
+  const cards = [
+    { icon: "phone", title: t("Call us"), value: CONTACT.phone, sub: t("Sun–Sat · 8am to 9pm"), href: CONTACT.phoneHref, tone: "blue" },
+    { icon: "doc", title: t("Email us"), value: CONTACT.email, sub: t("Replies within 1 business hour"), href: "mailto:" + CONTACT.email, tone: "blue" },
+  ];
+  return (
+    <div className="card" style={{ padding: 28 }}>
+      <div className="row gap-3" style={{ marginBottom: 20 }}>
+        <div style={{ width: 38, height: 38, borderRadius: 11, background: "var(--ai-100)", color: "var(--ai-500)", display: "grid", placeItems: "center" }}><Icon name="headset" size={20} /></div>
+        <div><h3 className="t-h3">{t("Need help? Talk to us")}</h3><div className="muted" style={{ fontSize: 13, marginTop: 2 }}>{t("Our advisors are available 7 days a week to help with quotes and bookings.")}</div></div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }} className="ct-grid">
+        {cards.map(c => (
+          <a key={c.title} href={c.href} className="row gap-3" style={{ padding: 16, borderRadius: 14, border: "1px solid var(--line)", background: "var(--surface-2)", transition: "border-color .15s" }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = "var(--blue-300)"} onMouseLeave={e => e.currentTarget.style.borderColor = "var(--line)"}>
+            <div style={{ width: 40, height: 40, borderRadius: 11, background: "var(--surface)", color: "var(--blue-600)", display: "grid", placeItems: "center", flexShrink: 0, border: "1px solid var(--line)" }}><Icon name={c.icon} size={19} /></div>
+            <div style={{ minWidth: 0 }}><div style={{ fontWeight: 700, fontSize: 14.5 }}>{c.title}</div><div className="mono" style={{ fontSize: 13, color: "var(--blue-700)", marginTop: 2, direction: "ltr", whiteSpace: "nowrap" }}>{c.value}</div><div className="muted" style={{ fontSize: 11.5, marginTop: 3 }}>{c.sub}</div></div>
+          </a>
+        ))}
+      </div>
+      <a href={CONTACT.whatsappHref} target="_blank" rel="noreferrer" className="row gap-3" style={{ marginTop: 14, padding: 16, borderRadius: 14, background: "#1FA855", color: "#fff", textDecoration: "none" }}>
+        <div style={{ width: 40, height: 40, borderRadius: 11, background: "rgba(255,255,255,.18)", display: "grid", placeItems: "center", flexShrink: 0 }}><Icon name="chat" size={20} /></div>
+        <div className="grow"><div style={{ fontWeight: 700, fontSize: 14.5 }}>{t("Chat on WhatsApp")}</div><div style={{ fontSize: 12.5, color: "rgba(255,255,255,.85)", marginTop: 2, direction: "ltr" }}>{CONTACT.whatsapp}</div></div>
+        <Badge kind="gray" >{t("Fastest response")}</Badge>
+      </a>
+      <style>{`@media(max-width:620px){.ct-grid{grid-template-columns:1fr!important}}`}</style>
+    </div>
+  );
+}
+
+Object.assign(window, { BookingForm, ContactSection, CONTACT });
+
+
+// === company_shell.jsx ===
+/* ============================================================
+   Company portal — shell, charts, Dashboard (8), Insights (11)
+   ============================================================ */
+
+const COMPANY_NAV = [
+  { key: "dashboard", label: "Dashboard", icon: "dashboard" },
+  { key: "requests", label: "Customer Requests", icon: "list" },
+  { key: "quotes", label: "Quote Management", icon: "edit" },
+  { key: "insights", label: "AI Insights", icon: "insights" },
+];
+
+function CompanyShell({ tab, setTab, onExit, title, subtitle, children, action }) {
+  const { t } = useLang();
+  return (
+    <div style={{ display: "flex", minHeight: "100vh", background: "var(--surface-2)" }}>
+      {/* Sidebar */}
+      <aside className="co-sidebar" style={{ width: 252, background: "var(--surface)", borderInlineEnd: "1px solid var(--line)", display: "flex", flexDirection: "column", position: "sticky", top: 0, height: "100vh" }}>
+        <div style={{ padding: "20px 20px 16px" }}><Logo size={28} /></div>
+        <nav className="col" style={{ gap: 3, padding: "8px 12px", flex: 1 }}>
+          <div className="mono muted" style={{ fontSize: 10.5, letterSpacing: ".1em", padding: "8px 12px 4px" }}>{t("WORKSPACE")}</div>
+          {COMPANY_NAV.map(n => {
+            const active = tab === n.key;
+            return (
+              <button key={n.key} onClick={() => setTab(n.key)} className="row gap-3" style={{ padding: "10px 12px", borderRadius: 10, width: "100%", textAlign: "start",
+                background: active ? "var(--blue-50)" : "transparent", color: active ? "var(--blue-700)" : "var(--ink-2)", fontWeight: active ? 700 : 600, fontSize: 14, transition: "background .12s" }}>
+                <Icon name={n.icon} size={18} /> {t(n.label)}
+              </button>
+            );
+          })}
+        </nav>
+        <div style={{ padding: 12, borderTop: "1px solid var(--line)" }}>
+          <div className="row gap-3" style={{ padding: "8px 10px", borderRadius: 10 }}>
+            <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(145deg, var(--blue-500), var(--ai-500))", color: "#fff", display: "grid", placeItems: "center", fontWeight: 700, fontSize: 14 }}>RA</div>
+            <div className="grow"><div style={{ fontSize: 13.5, fontWeight: 700 }}>Rana Aziz</div><div className="muted" style={{ fontSize: 11.5 }}>{t("Operations lead")}</div></div>
+          </div>
+          <button className="btn btn-ghost btn-sm btn-block" style={{ marginTop: 8 }} onClick={onExit}><Icon name="arrowLeft" size={15} /> {t("Customer site")}</button>
+        </div>
+      </aside>
+
+      {/* Main */}
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+        <header style={{ position: "sticky", top: 0, zIndex: 30, background: "rgba(255,255,255,.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--line)" }}>
+          <div className="row" style={{ height: 70, padding: "0 28px", justifyContent: "space-between", gap: 16 }}>
+            <div><h1 style={{ fontSize: 21, fontWeight: 800, letterSpacing: "-.015em" }}>{title}</h1>{subtitle && <div className="muted" style={{ fontSize: 13, marginTop: 2 }}>{subtitle}</div>}</div>
+            <div className="row gap-3">
+              <LanguageToggle compact />
+              <div className="row gap-2 co-search" style={{ height: 42, padding: "0 14px", border: "1px solid var(--line)", borderRadius: 99, background: "var(--surface)", color: "var(--ink-3)", width: 220 }}>
+                <Icon name="search" size={16} /><input placeholder={t("Search requests…")} style={{ border: "none", outline: "none", background: "none", fontSize: 13.5, width: "100%" }} />
+              </div>
+              <button className="row" style={{ width: 42, height: 42, borderRadius: 99, border: "1px solid var(--line)", background: "var(--surface)", justifyContent: "center", position: "relative" }}><Icon name="bell" size={18} /><span style={{ position: "absolute", top: 9, insetInlineEnd: 10, width: 7, height: 7, borderRadius: "50%", background: "var(--red-600)", border: "1.5px solid #fff" }} /></button>
+              {action}
+            </div>
+          </div>
+        </header>
+        <div style={{ padding: 28, flex: 1 }}>{children}</div>
+      </div>
+      <style>{`@media(max-width:860px){.co-sidebar{display:none!important}.co-search{display:none!important}}`}</style>
+    </div>
+  );
+}
+
+/* ---------------- Charts ---------------- */
+function BarTrend({ data }) {
+  const max = Math.max(...data);
+  const labels = ["J","F","M","A","M","J","J","A","S","O","N","D"];
+  return (
+    <div className="row" style={{ alignItems: "flex-end", gap: 8, height: 170, paddingTop: 8 }}>
+      {data.map((d, i) => (
+        <div key={i} className="col" style={{ flex: 1, alignItems: "center", gap: 8, height: "100%", justifyContent: "flex-end" }}>
+          <div title={d} style={{ width: "100%", maxWidth: 30, height: `${(d / max) * 100}%`, borderRadius: "6px 6px 3px 3px",
+            background: i === data.length - 1 ? "linear-gradient(180deg, var(--blue-500), var(--blue-700))" : "var(--blue-100)" }} />
+          <span className="mono muted" style={{ fontSize: 10 }}>{labels[i]}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Donut({ data, size = 168 }) {
+  const { t } = useLang();
+  const r = (size - 26) / 2, c = 2 * Math.PI * r, cx = size / 2;
+  let off = 0;
+  const total = data.reduce((a, b) => a + b.pct, 0);
+  return (
+    <div className="row gap-5" style={{ alignItems: "center", flexWrap: "wrap" }}>
+      <div style={{ position: "relative", width: size, height: size, flexShrink: 0 }}>
+        <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+          {data.map((d, i) => {
+            const len = (d.pct / total) * c;
+            const seg = <circle key={i} cx={cx} cy={cx} r={r} fill="none" stroke={d.color} strokeWidth="14" strokeLinecap="round" strokeDasharray={`${Math.max(0, len - 4)} ${c}`} strokeDashoffset={-off} style={{ transition: "stroke-dasharray .6s" }} />;
+            off += len; return seg;
+          })}
+        </svg>
+        <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", textAlign: "center" }}>
+          <div><div style={{ fontSize: 26, fontWeight: 800 }}>{data[0].pct}%</div><div className="muted" style={{ fontSize: 11 }}>{t(data[0].name).split(" ")[0]}</div></div>
+        </div>
+      </div>
+      <div className="col gap-3" style={{ flex: 1, minWidth: 180 }}>
+        {data.map(d => (
+          <div key={d.name} className="row" style={{ justifyContent: "space-between" }}>
+            <span className="row gap-2" style={{ fontSize: 13, fontWeight: 600 }}><span style={{ width: 10, height: 10, borderRadius: 3, background: d.color }} /> {t(d.name)}</span>
+            <span className="mono" style={{ fontSize: 13, fontWeight: 600 }}>{d.pct}%</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- Screen 8: Dashboard ---------------- */
+function Dashboard({ tab, setTab, onExit, onOpenRequest }) {
+  const { t } = useLang();
+  const k = Rasaia.KPIS;
+  return (
+    <CompanyShell tab={tab} setTab={setTab} onExit={onExit} title={t("Dashboard")} subtitle={t("Quotation activity across your business")}
+      action={<button className="btn btn-primary btn-sm" onClick={() => setTab("requests")}><Icon name="list" size={16} /> {t("All requests")}</button>}>
+      {/* KPI row */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 16 }} className="kpi-grid">
+        <StatCard icon="doc" label={t("Total quotes generated")} value={k.totalQuotes.toLocaleString()} delta="+12%" />
+        <StatCard icon="clock" label={t("Pending requests")} value={k.pending} delta={"8 " + t("new")} deltaTone="amber" accent="var(--amber-600)" />
+        <StatCard icon="check" label={t("Confirmed requests")} value={k.confirmed} delta="+9%" />
+        <StatCard icon="money" label={t("Average quote value")} value={Rasaia.fmt(k.avgValue)} delta="+4%" />
+        <StatCard icon="star" label={t("Most requested")} value={t(k.topService).split(" ")[0]} sub={t(k.topService)} accent="var(--ai-500)" />
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 16, marginTop: 16 }} className="dash-grid">
+        <div className="card" style={{ padding: 24 }}>
+          <div className="row" style={{ justifyContent: "space-between", marginBottom: 10 }}>
+            <div><h3 className="t-h3">{t("Quotes generated")}</h3><div className="muted" style={{ fontSize: 13 }}>{t("Last 12 months")}</div></div>
+            <Badge kind="green" dot>+18% YoY</Badge>
+          </div>
+          <BarTrend data={Rasaia.TREND} />
+        </div>
+        <div className="card" style={{ padding: 24 }}>
+          <h3 className="t-h3" style={{ marginBottom: 18 }}>{t("Service mix")}</h3>
+          <Donut data={Rasaia.SERVICE_MIX} />
+        </div>
+      </div>
+
+      {/* Recent requests */}
+      <div className="card" style={{ marginTop: 16, overflow: "hidden" }}>
+        <div className="row" style={{ justifyContent: "space-between", padding: "20px 24px", borderBottom: "1px solid var(--line)" }}>
+          <h3 className="t-h3">{t("Recent requests")}</h3>
+          <button className="btn btn-soft btn-sm" onClick={() => setTab("requests")}>{t("View all")} <Icon name="arrowRight" size={15} /></button>
+        </div>
+        <RequestTable rows={Rasaia.REQUESTS.slice(0, 5)} onOpen={onOpenRequest} compact />
+      </div>
+
+      <style>{`@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(2,1fr)!important}.dash-grid{grid-template-columns:1fr!important}}`}</style>
+    </CompanyShell>
+  );
+}
+
+/* shared table (used by dashboard + requests) */
+function RequestTable({ rows, onOpen, compact }) {
+  const { t } = useLang();
+  return (
+    <div style={{ overflowX: "auto" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 720 }}>
+        <thead>
+          <tr style={{ textAlign: "start" }}>
+            {[t("Customer"), t("Property"), t("Services"), t("Est. price"), t("Confidence"), t("Status"), ""].map((h, i) => (
+              <th key={i} className="mono" style={{ fontSize: 10.5, letterSpacing: ".06em", color: "var(--ink-3)", fontWeight: 600, padding: "12px 24px", borderBottom: "1px solid var(--line)", textTransform: "uppercase", background: "var(--surface-2)", textAlign: "start" }}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(r => {
+            const st = Rasaia.STATUS_META[r.status];
+            return (
+              <tr key={r.id} onClick={() => onOpen(r)} className="req-row" style={{ cursor: "pointer", transition: "background .12s" }}>
+                <td style={{ padding: "14px 24px", borderBottom: "1px solid var(--line-2)" }}>
+                  <div className="row gap-3">
+                    <div style={{ width: 34, height: 34, borderRadius: "50%", background: "var(--surface-3)", color: "var(--ink-2)", display: "grid", placeItems: "center", fontWeight: 700, fontSize: 12.5, flexShrink: 0 }}>{r.name.split(" ").map(n => n[0]).join("")}</div>
+                    <div><div style={{ fontWeight: 700, fontSize: 14 }}>{r.name}</div><div className="mono muted" style={{ fontSize: 11.5 }}>{r.id} · {r.when}</div></div>
+                  </div>
+                </td>
+                <td style={{ padding: "14px 24px", borderBottom: "1px solid var(--line-2)", fontSize: 13.5 }}><div style={{ fontWeight: 600 }}>{t(r.prop)}</div><div className="muted" style={{ fontSize: 12 }}>{r.area}</div></td>
+                <td style={{ padding: "14px 24px", borderBottom: "1px solid var(--line-2)", fontSize: 13.5, fontWeight: 600 }}>{t(r.svc)}</td>
+                <td style={{ padding: "14px 24px", borderBottom: "1px solid var(--line-2)", fontSize: 14, fontWeight: 700 }} ><span className="keep-ltr">{Rasaia.fmt(r.price)}</span></td>
+                <td style={{ padding: "14px 24px", borderBottom: "1px solid var(--line-2)" }}>
+                  <div className="row gap-2"><div style={{ width: 42, height: 6, borderRadius: 99, background: "var(--surface-3)", overflow: "hidden" }}><div style={{ width: r.conf + "%", height: "100%", background: r.conf >= 90 ? "var(--green-600)" : r.conf >= 82 ? "var(--blue-500)" : "var(--amber-600)" }} /></div><span className="mono" style={{ fontSize: 12, fontWeight: 600 }}>{r.conf}%</span></div>
+                </td>
+                <td style={{ padding: "14px 24px", borderBottom: "1px solid var(--line-2)" }}><span className={`badge ${st.cls}`}>{t(st.label)}</span></td>
+                <td style={{ padding: "14px 24px", borderBottom: "1px solid var(--line-2)", textAlign: "end" }}><Icon name="arrowRight" size={16} style={{ color: "var(--ink-3)" }} /></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <style>{`.req-row:hover{background:var(--surface-2)}`}</style>
+    </div>
+  );
+}
+
+/* ---------------- Screen 11: AI Insights ---------------- */
+function Insights({ tab, setTab, onExit }) {
+  const { t } = useLang();
+  const toneMap = { blue: { bg: "var(--blue-50)", fg: "var(--blue-600)" }, green: { bg: "var(--green-100)", fg: "var(--green-600)" }, amber: { bg: "var(--amber-100)", fg: "var(--amber-600)" } };
+  return (
+    <CompanyShell tab={tab} setTab={setTab} onExit={onExit} title={t("AI Insights")} subtitle={t("What the quotation engine is learning about your business")}>
+      {/* top metrics */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16 }} className="kpi-grid">
+        <StatCard icon="star" label={t("Most requested service")} value={t("Deep Cleaning").split(" ")[0]} sub={t("Deep Cleaning") + " · 41%"} accent="var(--ai-500)" />
+        <StatCard icon="ruler" label={t("Average property size")} value="1,640" sub={t("sq ft across all quotes")} />
+        <StatCard icon="trend" label={t("Deep Cleaning demand")} value="+18%" delta="30d" deltaTone="green" />
+        <StatCard icon="money" label={t("Average quote value")} value={Rasaia.fmt(Rasaia.KPIS.avgValue)} delta="+4%" />
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 16 }} className="dash-grid">
+        <div className="card" style={{ padding: 24 }}>
+          <h3 className="t-h3" style={{ marginBottom: 18 }}>{t("Service demand breakdown")}</h3>
+          <Donut data={Rasaia.SERVICE_MIX} />
+        </div>
+        <div className="card" style={{ padding: 24 }}>
+          <div className="row" style={{ justifyContent: "space-between", marginBottom: 10 }}><h3 className="t-h3">{t("Quote volume trend")}</h3><Badge kind="blue">{t("Monthly")}</Badge></div>
+          <BarTrend data={Rasaia.TREND} />
+        </div>
+      </div>
+
+      {/* AI generated insights */}
+      <div className="row gap-3" style={{ margin: "26px 0 16px" }}>
+        <div style={{ width: 34, height: 34, borderRadius: 10, background: "var(--ai-100)", color: "var(--ai-500)", display: "grid", placeItems: "center" }}><Icon name="sparkle" size={18} /></div>
+        <div><h2 className="t-h3">{t("AI-generated business insights")}</h2><div className="muted" style={{ fontSize: 13 }}>{t("Updated automatically from quotation data")}</div></div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }} className="g3">
+        {Rasaia.INSIGHTS.map((ins, i) => {
+          const tone = toneMap[ins.tone];
+          return (
+            <div key={i} className="card" style={{ padding: 22, borderTop: `3px solid ${tone.fg}` }}>
+              <div className="row gap-2" style={{ marginBottom: 12 }}><div style={{ width: 30, height: 30, borderRadius: 9, background: tone.bg, color: tone.fg, display: "grid", placeItems: "center" }}><Icon name="bolt" size={16} /></div><Badge kind="ai">{t("AI insight")}</Badge></div>
+              <h3 style={{ fontSize: 15.5, fontWeight: 700, lineHeight: 1.3 }}>{t(ins.title)}</h3>
+              <p className="muted" style={{ fontSize: 13.5, lineHeight: 1.55, marginTop: 8 }}>{t(ins.body)}</p>
+            </div>
+          );
+        })}
+      </div>
+      <style>{`@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(2,1fr)!important}.dash-grid,.g3{grid-template-columns:1fr!important}}`}</style>
+    </CompanyShell>
+  );
+}
+
+Object.assign(window, { CompanyShell, Dashboard, Insights, RequestTable, BarTrend, Donut, COMPANY_NAV });
+
+
+// === company_requests.jsx ===
+/* ============================================================
+   Company portal — Customer Requests (9) · Quote Management (10)
+   ============================================================ */
+
+const SVC_TO_KEY = { "Regular Cleaning": "regular", "Deep Cleaning": "deep", "Move-Out Cleaning": "moveout", "Post-Renovation Cleaning": "postreno" };
+const PROP_TO_KEY = { "Apartment": "apartment", "Villa": "villa", "Townhouse": "townhouse", "Office": "office" };
+
+/* ---------------- Screen 9: Customer Requests ---------------- */
+function Requests({ tab, setTab, onExit, onOpenRequest }) {
+  const { t } = useLang();
+  const [filter, setFilter] = useState("all");
+  const [q, setQ] = useState("");
+  const filters = [
+    { key: "all", label: t("All") }, { key: "pending", label: t("Pending") }, { key: "confirmed", label: t("Confirmed") },
+    { key: "review", label: t("In review") }, { key: "rejected", label: t("Rejected") },
+  ];
+  const counts = Rasaia.REQUESTS.reduce((a, r) => { a[r.status] = (a[r.status] || 0) + 1; return a; }, {});
+  const rows = Rasaia.REQUESTS.filter(r => (filter === "all" || r.status === filter) && (q === "" || r.name.toLowerCase().includes(q.toLowerCase()) || r.id.toLowerCase().includes(q.toLowerCase())));
+
+  return (
+    <CompanyShell tab={tab} setTab={setTab} onExit={onExit} title={t("Customer Requests")} subtitle={`${Rasaia.REQUESTS.length} ${t("total quotes")} · ${counts.pending || 0} ${t("awaiting action")}`}>
+      <div className="card" style={{ overflow: "hidden" }}>
+        <div className="row" style={{ justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid var(--line)", flexWrap: "wrap", gap: 12 }}>
+          <div className="row gap-2 wrap">
+            {filters.map(f => {
+              const active = filter === f.key;
+              const n = f.key === "all" ? Rasaia.REQUESTS.length : (counts[f.key] || 0);
+              return (
+                <button key={f.key} onClick={() => setFilter(f.key)} className="row gap-2" style={{ padding: "7px 13px", borderRadius: 99, fontSize: 13, fontWeight: 600,
+                  background: active ? "var(--navy)" : "var(--surface-2)", color: active ? "#fff" : "var(--ink-2)", transition: "all .12s" }}>
+                  {f.label}<span style={{ fontSize: 11, opacity: .7 }}>{n}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="row gap-2" style={{ height: 40, padding: "0 14px", border: "1px solid var(--line)", borderRadius: 99, background: "var(--surface)", color: "var(--ink-3)", width: 240 }}>
+            <Icon name="search" size={16} /><input value={q} onChange={e => setQ(e.target.value)} placeholder={t("Search name or reference…")} style={{ border: "none", outline: "none", background: "none", fontSize: 13.5, width: "100%" }} />
+          </div>
+        </div>
+        {rows.length ? <RequestTable rows={rows} onOpen={onOpenRequest} /> : (
+          <div className="col" style={{ alignItems: "center", padding: "60px 20px", color: "var(--ink-3)", gap: 10 }}>
+            <Icon name="search" size={28} /><div style={{ fontWeight: 600 }}>{t("No requests match your filters")}</div>
+          </div>
+        )}
+      </div>
+    </CompanyShell>
+  );
+}
+
+/* ---------------- Screen 10: Quote Management ---------------- */
+function QuoteManagement({ tab, setTab, onExit, request, onBack }) {
+  const { t } = useLang();
+  const base = request || Rasaia.REQUESTS[0];
+  const est = Rasaia.estimate({
+    propertyType: PROP_TO_KEY[base.prop] || "apartment",
+    size: base.size, bedrooms: base.beds, bathrooms: base.baths,
+    cleaningType: SVC_TO_KEY[base.svc] || "deep", photoCount: 5,
+  });
+  const [status, setStatus] = useState(base.status);
+  const [editing, setEditing] = useState(false);
+  const [price, setPrice] = useState(base.price);
+  const [team, setTeam] = useState(est.team);
+  const [toast, setToast] = useState(null);
+  const st = Rasaia.STATUS_META[status];
+
+  const flash = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2600); };
+  const act = (next, msg) => { setStatus(next); setEditing(false); flash(msg); };
+
+  return (
+    <CompanyShell tab={tab} setTab={setTab} onExit={onExit} title={t("Quote Management")} subtitle={t("Review, edit and decide on AI-generated quotes")}
+      action={<button className="btn btn-ghost btn-sm" onClick={onBack}><Icon name="arrowLeft" size={15} /> {t("All requests")}</button>}>
+
+      {toast && <div className="scale-in" style={{ position: "fixed", top: 84, insetInlineEnd: 28, zIndex: 80, background: "var(--navy)", color: "#fff", padding: "13px 18px", borderRadius: 12, boxShadow: "var(--sh-lg)", fontSize: 14, fontWeight: 600 }} ><span className="row gap-2"><Icon name="check" size={16} stroke={3} /> {toast}</span></div>}
+
+      <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 20, alignItems: "start" }} className="qm-grid">
+        {/* LEFT: quote detail */}
+        <div className="col gap-5">
+          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+            <div className="row" style={{ justifyContent: "space-between", padding: "22px 24px", borderBottom: "1px solid var(--line)", flexWrap: "wrap", gap: 12 }}>
+              <div className="row gap-3">
+                <div style={{ width: 46, height: 46, borderRadius: "50%", background: "linear-gradient(145deg,var(--blue-500),var(--ai-500))", color: "#fff", display: "grid", placeItems: "center", fontWeight: 700 }}>{base.name.split(" ").map(n => n[0]).join("")}</div>
+                <div><div style={{ fontWeight: 800, fontSize: 17 }}>{base.name}</div><div className="mono muted" style={{ fontSize: 12 }}>{base.id} · {base.area}</div></div>
+              </div>
+              <span className={`badge ${st.cls}`} style={{ height: "fit-content" }}><span className="dot" style={{ background: "currentColor" }} />{t(st.label)}</span>
+            </div>
+
+            {/* headline */}
+            <div style={{ padding: 24 }}>
+              <div className="row" style={{ justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+                <div>
+                  <div className="muted" style={{ fontSize: 13 }}>{t("Recommended service")}</div>
+                  <div className="t-h2" style={{ marginTop: 4 }}>{t(est.service.name)}</div>
+                </div>
+                <ConfidenceRing value={est.confidence} size={96} />
+              </div>
+
+              {/* editable metrics */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12, marginTop: 22 }} className="g3">
+                <div style={{ background: "var(--surface-2)", borderRadius: 12, padding: "14px 16px" }}>
+                  <div className="muted mono" style={{ fontSize: 10.5, letterSpacing: ".06em" }}>{t("QUOTE PRICE")}</div>
+                  {editing ? <input className="input" style={{ height: 40, marginTop: 6, fontWeight: 700 }} type="number" value={price} onChange={e => setPrice(+e.target.value)} />
+                    : <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4 }} className="keep-ltr">{Rasaia.fmt(price)}</div>}
+                </div>
+                <div style={{ background: "var(--surface-2)", borderRadius: 12, padding: "14px 16px" }}>
+                  <div className="muted mono" style={{ fontSize: 10.5, letterSpacing: ".06em" }}>{t("DURATION")}</div>
+                  <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4 }}>~{est.durationHours}h</div>
+                </div>
+                <div style={{ background: "var(--surface-2)", borderRadius: 12, padding: "14px 16px" }}>
+                  <div className="muted mono" style={{ fontSize: 10.5, letterSpacing: ".06em" }}>{t("TEAM SIZE")}</div>
+                  {editing ? (
+                    <div className="row gap-2" style={{ marginTop: 6 }}>
+                      <button className="btn btn-ghost btn-sm" style={{ width: 32, padding: 0 }} onClick={() => setTeam(Math.max(1, team - 1))}>−</button>
+                      <span style={{ fontSize: 20, fontWeight: 800 }}>{team}</span>
+                      <button className="btn btn-ghost btn-sm" style={{ width: 32, padding: 0 }} onClick={() => setTeam(team + 1)}>+</button>
+                    </div>
+                  ) : <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4 }}>{team}</div>}
+                </div>
+              </div>
+              {editing && <div className="row gap-2" style={{ marginTop: 14, fontSize: 12.5, color: "var(--amber-600)" }}><Icon name="edit" size={15} /> {t("Editing overrides the AI estimate. Changes are logged.")}</div>}
+            </div>
+
+            {/* AI reasoning */}
+            <div style={{ padding: "0 24px 24px" }}>
+              <div className="row gap-2" style={{ marginBottom: 12 }}><Icon name="sparkle" size={16} style={{ color: "var(--ai-500)" }} /><span style={{ fontWeight: 700, fontSize: 14 }}>{t("AI reasoning")}</span></div>
+              <div className="col gap-2">
+                {est.reasoning.map((r, i) => (
+                  <div key={i} className="row gap-3" style={{ padding: "12px 14px", background: "var(--surface-2)", borderRadius: 10 }}>
+                    <span className="mono" style={{ fontSize: 11, color: "var(--blue-600)", fontWeight: 700, marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
+                    <div><div style={{ fontWeight: 700, fontSize: 13.5 }}>{t(r.t)}</div><div className="muted" style={{ fontSize: 12.5, lineHeight: 1.5, marginTop: 2 }}>{r.d}</div></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: actions + property */}
+        <div className="col gap-5" style={{ position: "sticky", top: 86 }}>
+          <div className="card" style={{ padding: 22 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14 }}>{t("Decision")}</h3>
+            <div className="col gap-3">
+              {!editing ? (
+                <>
+                  <button className="btn btn-block" style={{ background: "var(--green-600)", color: "#fff" }} onClick={() => act("confirmed", t("Quote approved & confirmed"))}><Icon name="check" size={17} stroke={3} /> {t("Approve quote")}</button>
+                  <button className="btn btn-ghost btn-block" onClick={() => setEditing(true)}><Icon name="edit" size={16} /> {t("Edit quote")}</button>
+                  <button className="btn btn-block" style={{ background: "var(--red-100)", color: "var(--red-600)" }} onClick={() => act("rejected", t("Quote rejected"))}><Icon name="close" size={16} /> {t("Reject quote")}</button>
+                </>
+              ) : (
+                <>
+                  <button className="btn btn-primary btn-block" onClick={() => act(status === "rejected" ? "review" : status, t("Quote updated"))}><Icon name="check" size={16} stroke={3} /> {t("Save changes")}</button>
+                  <button className="btn btn-ghost btn-block" onClick={() => { setEditing(false); setPrice(base.price); setTeam(est.team); }}>{t("Cancel")}</button>
+                </>
+              )}
+            </div>
+            <div className="muted" style={{ fontSize: 12, marginTop: 14, lineHeight: 1.5 }}>{t("Approving notifies the customer and books the job. Rejecting sends a polite decline.")}</div>
+          </div>
+
+          <div className="card" style={{ padding: 22 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14 }}>{t("Property details")}</h3>
+            <div className="col">
+              {[["pin", t("Location"), base.area], ["building", t("Type"), t(base.prop)], ["ruler", t("Size"), base.size.toLocaleString() + " " + t("sq ft")], ["bed", t("Bedrooms"), base.beds], ["bath", t("Bathrooms"), base.baths], ["clock", t("Submitted"), base.when]].map((row, i) => (
+                <div key={row[1]} className="row" style={{ justifyContent: "space-between", padding: "10px 0", borderTop: i ? "1px solid var(--line-2)" : "none" }}>
+                  <span className="row gap-2 muted" style={{ fontSize: 13 }}><Icon name={row[0]} size={15} style={{ color: "var(--blue-500)" }} /> {row[1]}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700 }}>{row[2]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>{`@media(max-width:980px){.qm-grid{grid-template-columns:1fr!important}.qm-grid>div:last-child{position:static!important}}`}</style>
+    </CompanyShell>
+  );
+}
+
+Object.assign(window, { Requests, QuoteManagement });
+
+
+// === app.jsx ===
+/* ============================================================
+   Rasaia Clean AI — App shell & router
+   ============================================================ */
+
+function App() {
+  const [view, setView] = useState("landing");
+  const [companyTab, setCompanyTab] = useState("dashboard");
+  const [selected, setSelected] = useState(null);
+
+  const [quoteInput, setQuoteInput] = useState({ propertyType: "apartment", size: 1150, bedrooms: 2, bathrooms: 2, cleaningType: "deep" });
+  const [photos, setPhotos] = useState({ living: 0, kitchen: 0, bathroom: 0, bedroom: 0, extra: 0 });
+  const [est, setEst] = useState(null);
+  const [submitMode, setSubmitMode] = useState("callback");
+
+  // scroll to top on view change
+  useEffect(() => { window.scrollTo(0, 0); document.querySelector("main")?.scrollTo?.(0, 0); }, [view, companyTab]);
+
+  const goCompany = (tab = "dashboard") => { setCompanyTab(tab); setView("company"); };
+  const openRequest = (r) => { setSelected(r); setCompanyTab("quotes"); };
+
+  // Customer flow
+  if (view === "landing")
+    return <Landing onStart={() => setView("property")} onCompany={() => goCompany("dashboard")} />;
+
+  if (view === "property")
+    return <PropertyInfo value={quoteInput} onChange={setQuoteInput} onExit={() => setView("landing")} onNext={() => setView("photos")} />;
+
+  if (view === "photos")
+    return <PhotoUpload photos={photos} onChange={setPhotos} onBack={() => setView("property")} onExit={() => setView("landing")}
+      onNext={(total) => { setEst(Rasaia.estimate({ ...quoteInput, photoCount: total })); setView("analysis"); }} />;
+
+  if (view === "analysis")
+    return <AIAnalysis onExit={() => setView("landing")} onDone={() => setView("quote")} />;
+
+  if (view === "quote")
+    return <QuoteResults est={est} onExit={() => setView("landing")} onBack={() => setView("property")}
+      onSubmit={(mode) => { setSubmitMode(mode); setView("confirm"); }} />;
+
+  if (view === "confirm")
+    return <Confirmation est={est} mode={submitMode} onHome={() => setView("landing")} onCompany={() => goCompany("dashboard")} />;
+
+  // Company portal
+  if (view === "company") {
+    const shared = { tab: companyTab, setTab: setCompanyTab, onExit: () => setView("landing") };
+    if (companyTab === "dashboard") return <Dashboard {...shared} onOpenRequest={openRequest} />;
+    if (companyTab === "requests") return <Requests {...shared} onOpenRequest={openRequest} />;
+    if (companyTab === "quotes") return <QuoteManagement {...shared} request={selected} onBack={() => setCompanyTab("requests")} />;
+    if (companyTab === "insights") return <Insights {...shared} />;
+  }
+
+  return <Landing onStart={() => setView("property")} onCompany={() => goCompany("dashboard")} />;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <LangProvider><App /></LangProvider>
+);
+
+  </script>
+</body>
+</html>
